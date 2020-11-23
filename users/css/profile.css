@@ -1,0 +1,230 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+* {
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+.heading {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 100;
+  color: rgb(11, 169, 197);
+}
+.note {
+  margin-left: 100px;
+  margin-right: 130px;
+  text-align: center;
+  color: rgb(11, 169, 197);
+}
+.btn-1 {
+  margin-left: 150px;
+  /* background-color:rgb(11, 155, 184); */
+  background-color: rgb(12, 146, 170);
+  opacity: 0.5;
+  color: #fff;
+  padding: 8px;
+  cursor: pointer;
+  margin-left: 140px;
+}
+.btn1:hover {
+  background-color: rgb(8, 143, 167);
+}
+.general {
+  text-align: center;
+  margin: 20px;
+  font-weight: 500;
+  font-size: 25px;
+  padding: 8px;
+  color: #fff;
+  border-radius: 15px;
+  background-color: rgb(14, 141, 163);
+  opacity: 0.4;
+}
+@media screen and (max-width: 800px) {
+  .heading {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+/* for inputs */
+
+input::placeholder {
+  font-size: 18px;
+  color: dimgrey;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.same-for-all input {
+  all: unset;
+  width: 500px;
+  height: 20px;
+  border-bottom: 1px solid rgb(27, 168, 211);
+  padding-left: 55px;
+  font-size: 18px;
+  color: #333;
+  font-family: sans-serif;
+  position: relative;
+  text-align: center;
+  padding: 10px;
+  margin-left: 300px;
+}
+.same-for-all label {
+  position: absolute;
+}
+.select {
+  margin-left: 300px;
+  width: 520px;
+  padding-left: 180px;
+  border-color: rgb(27, 168, 211);
+  color: rgb(27, 168, 211);
+}
+.info {
+  margin-left: 180px;
+  line-height: 50px;
+  font-size: 20px;
+  color: rgb(11, 169, 197);
+}
+
+.submit {
+  background-color: rgb(14, 141, 163);
+  opacity: 0.4;
+  border-radius: 10px;
+  width: 100px;
+  cursor: pointer;
+  color: #fff;
+}
+#ta1 {
+  width: 400px;
+  font-size: 14px;
+}
+#ta2 {
+  width: 400px;
+  font-size: 14px;
+}
+.asterick {
+  display: flex;
+  margin-left: 140px;
+  color: rgb(14, 141, 163);
+}
+/* media query */
+@media screen and (max-width: 950px) {
+  .heading {
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 50;
+    color: rgb(11, 169, 197);
+  }
+  .note {
+    margin-left: 50px;
+    margin-right: 65px;
+    text-align: center;
+    color: rgb(11, 169, 197);
+  }
+  .btn-1 {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(12, 146, 170);
+    opacity: 0.5;
+    color: #fff;
+    padding: 8px;
+    cursor: pointer;
+  }
+  .general {
+    text-align: center;
+    margin: 20px;
+    font-weight: 200;
+    font-size: 20px;
+    padding: 4px;
+    color: #fff;
+    border-radius: 15px;
+    background-color: rgb(14, 141, 163);
+    opacity: 0.4;
+  }
+  input::placeholder {
+    font-size: 10px;
+    color: dimgrey;
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .same-for-all input {
+    all: unset;
+    width: 200px;
+    height: 20px;
+    border-bottom: 1px solid rgb(27, 168, 211);
+    padding-left: 55px;
+    font-size: 18px;
+    color: #333;
+    font-family: sans-serif;
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    margin-left: 300px;
+  }
+  .same-for-all label {
+    position: absolute;
+  }
+  .select {
+    margin-left: 300px;
+    width: 200px;
+    padding-left: 180px;
+    border-color: rgb(27, 168, 211);
+    color: rgb(27, 168, 211);
+  }
+  .info {
+    margin-left: 100px;
+    line-height: 50px;
+    font-size: 20px;
+    color: rgb(11, 169, 197);
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .same-for-all input {
+    all: unset;
+    width: 90px;
+    height: 20px;
+    border-bottom: 1px solid rgb(27, 168, 211);
+    padding-left: 55px;
+    font-size: 10px;
+    color: #333;
+    font-family: sans-serif;
+    position: relative;
+    text-align: center;
+    padding: 10px;
+    margin-left: 185px;
+  }
+  .same-for-all label {
+    position: absolute;
+  }
+  .select {
+    margin-left: 185px;
+    width: 90px;
+    padding-left: 80px;
+    border-color: rgb(27, 168, 211);
+    color: rgb(27, 168, 211);
+  }
+  .info {
+    margin-left: 40px;
+    line-height: 50px;
+    font-size: 10px;
+    color: rgb(11, 169, 197);
+  }
+  #ta1 {
+    width: 300px;
+    font-size: 10px;
+  }
+  #ta2 {
+    width: 300px;
+    font-size: 10px;
+  }
+  .asterick {
+    display: flex;
+    margin-left: 30px;
+    color: rgb(14, 141, 163);
+  }
+}

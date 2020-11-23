@@ -1,0 +1,93 @@
+main .card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background: rgba(91,170,216, 0.3);
+    flex-direction: row;
+    margin-top: 1.5em;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 15px;
+}
+
+main .info {
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-left: 15px;
+}
+
+main .info hr {
+    border: 1px solid #fff;
+    background: #fff;
+}
+
+.img > img {
+    height: 200px;
+}
+
+main .subinfo {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+main .button {
+    display: flex;
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+main .button span {
+    color: #5BAAD8;
+    margin-left: 13px;
+}
+
+main .button img {
+    height: 25px;
+}
+
+main .subinfo > .subinfo1 {
+    display: flex;
+}
+
+main .subinfo > .subinfo1 > div {
+    display: flex;
+    flex-direction: column;
+}
+
+main .subinfo > .subinfo1 > div > span {
+    margin-bottom: 4px;
+    margin-right: 4px;
+}
+
+main .smallSizeDisplay {
+    display: none!important;
+}
+
+@media all and (max-width: 793px) {
+    main .button {
+        margin-top: 15px;
+        justify-content: center;
+    }
+
+    main .smallSizeDisplay {
+        display: flex!important;
+        flex-direction: column!important;
+    }
+
+    main .smallSizeDisplay div {
+        margin-bottom: 15px;
+    }
+
+    main .largeScreenText {
+        display: none!important;
+    }
+}

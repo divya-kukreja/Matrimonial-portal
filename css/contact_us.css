@@ -1,0 +1,90 @@
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 50px;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form input, .form textarea {
+    border-left: hidden;
+    border-top: hidden;
+    border-right: hidden;
+    border-bottom: 1px solid #5BAAD8;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    margin-top: 20px;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+}
+
+.form img {
+    height: 400px;
+    width: 400px;
+}
+
+.form button {
+    background: #5BAAD8;
+    color: white;
+    border: 1px solid #5BAAD8;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 5px 8px;
+    margin-top: 14px;
+    width: 80%;
+}
+
+iframe {
+    height: 450px;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
+.contact div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7px;
+}
+
+.contact div img {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+*:focus::-webkit-input-placeholder {
+    opacity: 0;
+}
+
+*:focus:-moz-placeholder {
+    opacity: 0;
+}
+*:focus::-moz-placeholder {
+    opacity: 0;
+}
+
+*:focus:-ms-input-placeholder {
+    opacity: 0;
+}
+
+*:focus::placeholder {
+    opacity: 0;
+}

@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Navbar */
+nav {
+    background-image: url("../images/navbar.png");
+    height: 280px;
+    width: 100%;
+}
+
+.navbar-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.nav-link {
+    display: block;
+    padding: .5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.brand-logo {
+    height: 80px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.navbar-top > ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    margin-top: 10px;
+    margin-right: 15px;
+}
+
+.active {
+    font-weight: 600;
+}
+
+.brand-tagline {
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    margin-left: 80px;
+    font-weight: 600;
+    margin-right: 80px;
+}
+
+.tagline {
+    display: flex;
+    margin-top: 35px;
+}
+
+@media screen and (max-width: 576px) {
+    .tagline {
+        visibility: hidden;
+    }
+}
+
+/* Main Page */
+.title {
+    text-align: center;
+    font-size: 27px;
+    color: #5BAAD8;
+    font-weight: bolder;
+    margin-top: 20px;
+}
+
+.title2 {
+    margin-top: 100px;
+}
+
+.title2 button {
+    background: #5BAAD8;
+    color: white;
+    border: 1px solid #5BAAD8;
+    font-size: 17px;
+    cursor: pointer;
+    padding: 5px 8px;
+    margin-top: 14px;
+}
+.someone-three {
+    margin-top: 60px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.someone-three .hr {
+    border-left: 1px solid #5BAAD8;
+}
+
+@media screen and (max-width: 576px) {
+    .someone-three .hr {
+        visibility: hidden;
+    }
+}
+
+.someone-three div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.someone-three div .msg {
+    margin-top: 9px;
+    font-size: 18px!important;
+    color: #5BAAD8;
+}
+
+.someone-three div span {
+    font-size: 13px;
+    color: #00070C;
+}
+
+.someone-three img {
+    width: 85px;
+    height: 85px;
+}
+
+.someone-four img {
+    width: 300px;
+    height: 300px;
+}
+
+.someone-four span {
+    padding-top: 6px;
+    font-size: 16px!important;
+    text-align: center;
+}
+
+.someone-five span {
+    margin-top: 14px;
+    text-align: center;
+}
+
+/* Footer */
+
+footer {
+    background: rgba(91,170,216, 0.62) !important;
+    color: #fff;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding: 2em;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 80px;
+}
+
+footer hr {
+    background: white;
+}
+
+footer h4 {
+    font-size: 20px;
+}
+
+footer h5 {
+    font-size: 12px;
+}
+
+footer a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover, a:visited {
+    text-decoration: none;
+}
+
+.brands {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brands img {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+footer > div {
+    margin-top: 15px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+h4.modalTitle {
+    text-align: center!important;
+    font-size: 20px;
+    margin-top: 12px;
+    padding-top: 12px;
+}
+
+.loginModalTitle {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+input {
+    border: hidden;
+    outline: none;
+    width: 90%;
+}
+
+section.subBodyForm {
+    border-left: hidden;
+    outline: none;
+    border-right: hidden;
+    border-top: hidden;
+    border-bottom: 1px solid #5BAAD8;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+}
+
+section.subBodyForm img {
+    height: 50px;
+    width: 50px;
+    float: right;
+    margin-bottom: 4px;
+}
+
+.inputText {
+    width: 90%;
+}
+
+.modalBtn {
+    background: #5BAAD8;
+    color: white;
+    border: 1px solid #5BAAD8;
+    width: 100%;
+}
+
+.submitForm {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+.submitForm a , #goToRegister, #goToLogin{
+    color: #5BAAD8;
+    text-decoration: none;
+    padding-left: 20px;
+}
+
+#goToRegister, #goToLogin {
+    padding-left: 0!important;
+    margin-top: 30px;
+}
+
+body {
+    position: absolute!important;
+}
+
+@media screen and (max-width: 572px) {
+    .someone-three {
+        justify-content: center!important;
+    }
+
+    footer {
+        justify-content: space-between!important;
+    }
+
+    .modal-content {
+        width: 80%;
+    }
+
+    nav {
+        height: 100px;
+    }
+}
+
