@@ -1,0 +1,54 @@
+#approveTable {
+    margin-top: 60px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#approveTable .formAction {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#approveTable .formAction .viewProfile {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background: #5bc0de;
+    color: #ffffff;
+    border: 1px solid #5bc0de;
+    padding: 5px;
+}
+
+#approveTable .formAction .approveBtn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background: #5cb85c;
+    color: #ffffff;
+    border: 1px solid #5cb85c;
+    padding: 5px;
+}
+
+#approveTable .formAction .rejectBtn {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    background: #d9534f;
+    color: #ffffff;
+    border: 1px solid #d9534f;
+    padding: 5px;
+}
+
+.formAction > form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.formAction > form img {
+    height: 20px;
+    width: 20px;
+}
