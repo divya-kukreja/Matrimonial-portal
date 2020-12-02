@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../users/css/profile.css">
     <link rel="stylesheet" href="../users/css/shortlist.css">
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
-    <title>Home page</title>
+    <title>Approved Applications</title>
 </head>
 <body>
     <nav>
@@ -36,6 +36,79 @@
         </div>
     </nav>
     <main>
+        <?php
+            require_once "mysql_connection.php";
+
+            $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='OK' AND auth_id='1'";
+
+            $approvedResult = $conn->query($approvedSQL);
+
+            if (isset($approvedResult)) {
+                if ($approvedResult->num_rows > 0) {
+                    while ($approvedResult1 = $approvedResult->fetch_assoc()) {
+                        $approvedUserSQL = "SELECT * FROM profile WHERE user_id='" . $approvedResult1["user_id"] . "'";
+                        $approvedUserConn = $conn->query($approvedUserSQL);
+
+                        if ($approvedUserConn->num_rows > 0) {
+                            while ($approvedUserDetails = $approvedUserConn->fetch_assoc()) {
+                                echo "<div class='card'>";
+                                    echo "<div class='img'>";
+                                    echo "<a href='#'><img src='../images/ladyprofile.png' alt='Lady' height='200'></a>";
+                                    echo "</div>";
+                                    echo "<div class='info'>";
+                                    echo "<div>";
+                                    echo "<h4>MIH(" . $approvedUserDetails["user_id"] . ")</h4>";
+                                    echo "<small>&emsp;</small>";
+                                    echo "<hr>";
+                                    echo "</div>";
+                                    echo "<div class='subinfo'>";
+                                    echo "<div class='subinfo1'>";
+                                    echo "<div class='largeScreenText'>";
+                                    echo "<span>DOB: | </span>";
+                                    echo "<span>" . $approvedUserDetails["dob"] . "</span>";
+                                    echo "<span>Religion: | </span>";
+                                    echo "<span>" . $approvedUserDetails["religion"] . "</span>";
+                                    echo "<span>Martial Status: | </span>";
+                                    echo "<span>" . $approvedUserDetails["maritial"] . "</span>";
+                                    echo "<span>City: | </span>";
+                                    echo "<span>" . $approvedUserDetails["city"] . "</span>";
+                                    echo "</div>";
+                                    echo "<div class='smallSizeDisplay'>";
+                                    echo "<div>";
+                                    echo "<span>DOB: | </span>";
+                                    echo "<span>" . $approvedUserDetails["dob"] . "</span>";
+                                    echo "</div>";
+                                    echo "<div>";
+                                    echo "<span>Religion: | </span>";
+                                    echo "<span>" . $approvedUserDetails["religion"] . "</span>";
+                                    echo "</div>";
+                                    echo "<div>";
+                                    echo "<span>Martial Status: |</span>";
+                                    echo "<span>" . $approvedUserDetails["maritial"] . "</span>";
+                                    echo "</div>";
+                                    echo "<div>";
+                                    echo "<span>City: |</span>";
+                                    echo "<span>" . $approvedUserDetails["city"] . "</span>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                echo "</div>";
+                            }
+                        }
+                    }
+                }
+            }
+
+            else {
+                echo "NA";
+            }
+
+        ?>
+
+        <!--
         <div class="card">
             <div class="img">
                 <a href="partner_search.php"><img src="../images/ladyprofile.png" alt="Lady" height="200"></a>
@@ -45,7 +118,6 @@
                     <h4>MIH (2087)</h4>
                     <small>Sent : 23rd Nov 2020</small>
                     <hr>
-                    <!-- &emsp; -->
                 </div>
                 <div class="subinfo">
                     <div class="subinfo1">
@@ -60,7 +132,6 @@
                             <span>surat| </span>
                         </div>
 
-                        <!-- For small screens -->
                         <div class="smallSizeDisplay">
                             <div>
                                 <span>Age:&emsp;</span>
@@ -79,12 +150,12 @@
                                 <span>Surat</span>
                             </div>
                         </div>
-                        <!-- End of small screen -->
                     </div>
 
                 </div>
             </div>
         </div>
+        -->
     </main>
 </body>
 </html>

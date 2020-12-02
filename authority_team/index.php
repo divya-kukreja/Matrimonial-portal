@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
+    <!-- jQuery CDN -->
+    <script src="js/jquery-3.5.1.min.js"></script>
     <title>Home page</title>
 </head>
 <body>
@@ -49,52 +51,89 @@
                     </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Parth Kalbag</td>
-                    <td>India</td>
-                    <td>04/05/2001</td>
-                    <td>Maharashtra</td>
-                    <td>345345345</td>
-                    <td>abc@gmail.com</td>
-                    <td class="formAction">
-                        <form method="post">
-                            <input type="hidden" name="user_id" value="1234">
-                            <div class="approveBtn">
-                                <div>
-                                    <img src="images/check-circle-regular.png">
-                                </div>
-                                <div>
-                                    <button type="submit" class="approveBtn">Approve</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form method="post">
-                            <input type="hidden" name="user_id" value="1234">
-                            <div class="rejectBtn">
-                                <div>
-                                    <img src="images/times-solid.png">
-                                </div>
-                                <div>
-                                    <button type="submit" class="rejectBtn">Reject</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form method="post">
-                            <input type="hidden" name="user_id" value="1234">
-                            <div class="viewProfile">
-                                <div>
-                                    <img src="images/user-solid.png">
-                                </div>
-                                <div>
-                                    <a href="personal_profile.php?id=1" class="viewProfile">View Profile</a>
-                                </div>
-                            </div>
-                        </form>
-                    </td>
-                </tr>
+                <?php
+                    require_once "mysql_connection.php";
+
+                    $sql = "SELECT * FROM profile where is_authorized='F'";
+
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["name"] . "</td>";
+                            echo "<td>" . $row["country"] . "</td>";
+                            echo "<td>" . $row["dob"] . "</td>";
+                            echo "<td>" . $row["state"] . "</td>";
+                            echo "<td>" . $row["mobile"] . "</td>";
+                            echo "<td>" . $row["email"] . "</td>";
+                            echo "<td class='formAction'>";
+                            echo "<form method='post'>";
+                            echo "<input type='hidden' name='user_id' value='1234'>";
+                            echo "<div class='approveBtn'>";
+                            echo "<div>";
+                            echo "<img src='images/check-circle-regular.png'>";
+                            echo "</div>";
+                            echo "<div>";
+                            echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='approveBtn'>Approve</a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</form>";
+                            echo "<form method='post'>";
+                            #echo "<input type='hidden' name='user_id' value='1234'>";
+                            echo "<div class='rejectBtn'>";
+                            echo "<div>";
+                            echo "<img src='images/times-solid.png'>";
+                            echo "</div>";
+                            echo "<div>";
+                            echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='rejectBtn'>Reject</a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</form>";
+                            echo "<form method='post'>";
+                            #echo "<input type='hidden' name='user_id' value='1234'>";
+                            echo "<div class='viewProfile'>";
+                            echo "<div>";
+                            echo "<img src='images/user-solid.png'>";
+                            echo "</div>";
+                            echo "<div>";
+                            echo "<a style='cursor: pointer;' class='viewProfile'>View Profile</a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</form>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    }
+
+                    else {
+                        echo "<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>";
+                    }
+                ?>
                 </tbody>
             </table>
         </div>
     </main>
+    <script>
+        $(".approveBtn").on("click", function () {
+            $.ajax({
+                url: "ajax/approved_application.php?id=" + this.id,
+                type: "GET",
+                success: function (data) {
+                    console.log("approved");
+                }
+            })
+        })
+
+        $(".rejectBtn").on("click", function () {
+            $.ajax({
+                url: "ajax/rejected_application.php?id=" + this.id,
+                type: "GET",
+                success: function (data) {
+                    console.log("rejected");
+                }
+            })
+        })
+    </script>
 </body>
 </html>
