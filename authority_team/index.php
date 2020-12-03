@@ -103,7 +103,7 @@
                                 echo "<img src='images/user-solid.png'>";
                                 echo "</div>";
                                 echo "<div>";
-                                echo "<a style='cursor: pointer;' class='viewProfile' href='personal_profile.php?id=1'>View Profile</a>";
+                                echo "<a style='cursor: pointer;' class='viewProfile' href='personal_profile.php?id= " . $row["user_id"] . "'>View Profile</a>";
                                 echo "</div>";
                                 echo "</div>";
                                 echo "</form>";
