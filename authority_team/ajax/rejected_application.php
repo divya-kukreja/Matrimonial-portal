@@ -7,9 +7,10 @@ if ($userID !== false) {
     try {
         $conn->begin_transaction();
         $insertSQL = "INSERT INTO is_authorized_user(user_id, auth_id, remarks) VALUES(" . "'$userID', " . "'1', " . "'F'" .")";
-        $conn->query($insertSQL);
-        $conn->query($updateUsersTable);
-        $conn->commit();
+        if ($userID !== '' && $userID !== ' ') {
+            $conn->query($insertSQL);
+            $conn->commit();
+        }
         $conn->close();
     }
 

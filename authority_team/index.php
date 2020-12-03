@@ -60,49 +60,56 @@
 
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $row["name"] . "</td>";
-                            echo "<td>" . $row["country"] . "</td>";
-                            echo "<td>" . $row["dob"] . "</td>";
-                            echo "<td>" . $row["state"] . "</td>";
-                            echo "<td>" . $row["mobile"] . "</td>";
-                            echo "<td>" . $row["email"] . "</td>";
-                            echo "<td class='formAction'>";
-                            echo "<form method='post'>";
-                            echo "<input type='hidden' name='user_id' value='1234'>";
-                            echo "<div class='approveBtn'>";
-                            echo "<div>";
-                            echo "<img src='images/check-circle-regular.png'>";
-                            echo "</div>";
-                            echo "<div>";
-                            echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='approveBtn'>Approve</a>";
-                            echo "</div>";
-                            echo "</div>";
-                            echo "</form>";
-                            echo "<form method='post'>";
-                            #echo "<input type='hidden' name='user_id' value='1234'>";
-                            echo "<div class='rejectBtn'>";
-                            echo "<div>";
-                            echo "<img src='images/times-solid.png'>";
-                            echo "</div>";
-                            echo "<div>";
-                            echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='rejectBtn'>Reject</a>";
-                            echo "</div>";
-                            echo "</div>";
-                            echo "</form>";
-                            echo "<form method='post'>";
-                            #echo "<input type='hidden' name='user_id' value='1234'>";
-                            echo "<div class='viewProfile'>";
-                            echo "<div>";
-                            echo "<img src='images/user-solid.png'>";
-                            echo "</div>";
-                            echo "<div>";
-                            echo "<a style='cursor: pointer;' class='viewProfile'>View Profile</a>";
-                            echo "</div>";
-                            echo "</div>";
-                            echo "</form>";
-                            echo "</td>";
-                            echo "</tr>";
+
+                            $checkIfRejectedSQL = "SELECT * FROM is_authorized_user WHERE user_id='" . $row["user_id"] . "'";
+
+                            $checkIfRejectedResult = $conn->query($checkIfRejectedSQL);
+
+                            if ($checkIfRejectedResult->num_rows <= 0) {
+                                echo "<tr>";
+                                echo "<td>" . $row["name"] . "</td>";
+                                echo "<td>" . $row["country"] . "</td>";
+                                echo "<td>" . $row["dob"] . "</td>";
+                                echo "<td>" . $row["state"] . "</td>";
+                                echo "<td>" . $row["mobile"] . "</td>";
+                                echo "<td>" . $row["email"] . "</td>";
+                                echo "<td class='formAction'>";
+                                echo "<form method='post'>";
+                                echo "<input type='hidden' name='user_id' value='1234'>";
+                                echo "<div class='approveBtn'>";
+                                echo "<div>";
+                                echo "<img src='images/check-circle-regular.png'>";
+                                echo "</div>";
+                                echo "<div>";
+                                echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='approveBtn'>Approve</a>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</form>";
+                                echo "<form method='post'>";
+                                #echo "<input type='hidden' name='user_id' value='1234'>";
+                                echo "<div class='rejectBtn'>";
+                                echo "<div>";
+                                echo "<img src='images/times-solid.png'>";
+                                echo "</div>";
+                                echo "<div>";
+                                echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='rejectBtn'>Reject</a>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</form>";
+                                echo "<form method='post'>";
+                                #echo "<input type='hidden' name='user_id' value='1234'>";
+                                echo "<div class='viewProfile'>";
+                                echo "<div>";
+                                echo "<img src='images/user-solid.png'>";
+                                echo "</div>";
+                                echo "<div>";
+                                echo "<a style='cursor: pointer;' class='viewProfile' href='personal_profile.php?id=1'>View Profile</a>";
+                                echo "</div>";
+                                echo "</div>";
+                                echo "</form>";
+                                echo "</td>";
+                                echo "</tr>";
+                            }
                         }
                     }
 
