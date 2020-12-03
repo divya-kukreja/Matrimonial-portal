@@ -1,14 +1,14 @@
 <?php
 require_once "../mysql_connection.php";
 
-$userID = $_GET["id"] ?? false;
+$contactID = $_GET["id"] ?? false;
 
-if ($userID !== false) {
+if ($contactID !== false) {
     try {
         $conn->begin_transaction();
-        $deleteFromUserSQL = "DELETE FROM profile WHERE user_id='" . $userID . "'";
+        $deleteFromUserSQL = "DELETE FROM contact WHERE contact_id='" . $contactID . "'";
 
-        if ($userID !== '' && $userID !== ' ') {
+        if ($contactID !== '' && $contactID !== ' ') {
             $conn->query($deleteFromUserSQL);
             $conn->commit();
         }

@@ -68,13 +68,12 @@
                             echo "<td>" . $row["timestamp"] . "</td>";
                             echo "<td class='formAction'>";
                             echo "<form method='post'>";
-                            echo "<input type='hidden' name='user_id' value='1234'>";
                             echo "<div class='approveBtn'>";
                             echo "<div>";
                             echo "<img src='../authority_team/images/check-circle-regular.png' alt=''>";
                             echo "</div>";
                             echo "<div>";
-                            echo "<a style='cursor: pointer;' id='" . $row["contact_id"] . "' class='approveBtn'>Complaint Resolved</a>";
+                            echo "<a style='cursor: pointer;' id='" . $row["contact_id"] . "' class='approveBtn resolve'>Complaint Resolved</a>";
                             echo "</div>";
                             echo "</div>";
                             echo "</form>";
@@ -84,7 +83,7 @@
                             echo "<img src='../authority_team/images/times-solid.png'>";
                             echo "</div>";
                             echo "<div>";
-                            echo "<a style='cursor: pointer;' id='" . $row["contact_id"] . "' class='rejectBtn'>Complaint Rejected</a>";
+                            echo "<a style='cursor: pointer;' id='" . $row["contact_id"] . "' class='rejectBtn rejected'>Complaint Rejected</a>";
                             echo "</div>";
                             echo "</div>";
                             echo "</form>";
@@ -101,5 +100,26 @@
             </table>
         </div>
     </main>
+    <script>
+        $(".resolve").on("click", function () {
+            $.ajax({
+                url: "ajax/general_complaints.php?id=" + this.id,
+                type: "GET",
+                success: function (data) {
+                    console.log("approved");
+                }
+            })
+        })
+
+        $(".rejected").on("click", function () {
+            $.ajax({
+                url: "ajax/general_complaints.php?id=" + this.id,
+                type: "GET",
+                success: function (data) {
+                    console.log("approved");
+                }
+            })
+        })
+    </script>
 </body>
 </html>
