@@ -58,7 +58,7 @@
                         echo "<div class='info'>";
                         echo "<div>";
                         echo "<h4>MIH(" . $approvedUserDetails["user_id"] . ")</h4>";
-                        echo "<small>&emsp;</small>";
+                        echo "<small>" . $approvedUserDetails["name"] . "</small>";
                         echo "<hr>";
                         echo "</div>";
                         echo "<div class='subinfo'>";
