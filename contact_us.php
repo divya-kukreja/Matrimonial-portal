@@ -11,20 +11,57 @@
     <link rel="icon" href="images/favicon.ico" type="image/ico">
     <title>Contact Us</title>
 </head>
+
 <body>
     <?php
-        require_once "submodules/navbar.php"
+
+    require "submodules/_dbconnect.php";
     ?>
+
+    <?php
+    $showAlert = false;
+    $method = $_SERVER['REQUEST_METHOD'];
+    //echo $method;       // method check krne ke liye get hai ki post
+
+    if ($method == "POST") {
+        // Insert into profile table
+        $full_name = $_POST['full_name'];
+        $email_address = $_POST['email_address'];
+        $mobile_no = $_POST['mobile_no'];
+        $message     = $_POST['message'];
+
+
+        //$timestamp = $_POST['timestamp'];
+        $sql  = "INSERT INTO `contact`(`full_name`, `email_address`, `mobile_no`, `message`,`timestamp`) VALUES ('$full_name','$email_address','$mobile_no','$message',current_timestamp())";
+
+        $result = mysqli_query($conn, $sql);
+        $showAlert = true;
+
+        if ($showAlert) {
+            echo '<div class="alert alert-success alert-dismissible fade show " role="alert">
+                    <strong>ThankYou!</strong> We have recieved your query . we will surely connect back you soon.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>';
+        }
+    }
+
+    ?>
+    <?php
+    require_once "submodules/navbar.php";
+    ?>
+
     <main>
         <div class="title">
             <span>Contact Us</span>
         </div>
         <div class="form">
-            <form method="POST">
-                <input type="text" placeholder="Full Name" name="full_name">
-                <input type="email" placeholder="Email Address" name="email_address">
-                <input type="tel" placeholder="Mobile No" name="mobile_no">
-                <textarea placeholder="Message" name="message"></textarea>
+            <form method="POST" action=" <?php $_SERVER['REQUEST_URI']; ?>">
+                <input type="text" placeholder="Full Name" name="full_name" required>
+                <input type="email" placeholder="Email Address" name="email_address" required>
+                <input type="tel" placeholder="Mobile No" name="mobile_no" required>
+                <textarea placeholder="Message" name="message" required></textarea>
                 <button type="submit">Submit</button>
             </form>
             <div>
@@ -60,4 +97,5 @@
         require_once "submodules/footer.php";
     ?>
 </body>
+
 </html>
