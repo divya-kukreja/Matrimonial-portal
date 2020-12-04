@@ -27,7 +27,7 @@
                 <a class="nav-link active" href="rejected_applications.php">Rejected Applications</a>
             </li>
             <li>
-                <a class="nav-link" href="#" id="loginBtn1">Logout</a>
+                <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
             </li>
         </ul>
     </div>
@@ -39,7 +39,8 @@
     <?php
     require_once "mysql_connection.php";
 
-    $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='F' AND auth_id='1'";
+    $authID = $_SESSION["username"] ?? false;
+    $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='F' AND auth_id='" . $authID . "'";
 
     $approvedResult = $conn->query($approvedSQL);
 

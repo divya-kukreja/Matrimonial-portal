@@ -26,7 +26,7 @@
                 <a class="nav-link" href="rejected_applications.php">Rejected Applications</a>
             </li>
             <li>
-                <a class="nav-link" href="#" id="loginBtn1">Logout</a>
+                <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
             </li>
         </ul>
     </div>
@@ -40,6 +40,9 @@
     $userID = $_GET["id"] ?? false;
 
     if (isset($userID)) {
+    $adminID = $_SESSION["admin_id"] ?? false;
+
+    if (isset($adminID)) {
         $userSQL = "SELECT * FROM profile WHERE user_id='" . $userID . "'";
 
         $userExec = $conn->query($userSQL);
@@ -239,11 +242,13 @@
                 echo "</form>";
                 echo "</section>";
             }
-        }
-
-        else {
+        } else {
             echo "<h2>No user selected</h2>";
         }
+    }
+    else {
+        echo "403 Forbidden";
+    }
     }
 
     else {

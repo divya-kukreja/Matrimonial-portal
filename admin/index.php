@@ -30,7 +30,7 @@
                     <a class="nav-link" href="user_complaints.php">User Complaints</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" id="loginBtn1">Logout</a>
+                    <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
                 </li>
             </ul>
         </div>
@@ -56,49 +56,54 @@
                 <?php
                 require_once "mysql_connection.php";
 
-                $sql = "SELECT * FROM profile";
+                $adminID = $_SESSION["admin_id"] ?? false;
 
-                $result = $conn->query($sql);
+                if (isset($adminID)) {
+                    $sql = "SELECT * FROM profile";
 
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        echo "<tr>";
-                        echo "<td>" . $row["name"] . "</td>";
-                        echo "<td>" . $row["country"] . "</td>";
-                        echo "<td>" . $row["dob"] . "</td>";
-                        echo "<td>" . $row["state"] . "</td>";
-                        echo "<td>" . $row["mobile"] . "</td>";
-                        echo "<td>" . $row["email"] . "</td>";
-                        echo "<td class='formAction'>";
-                        echo "<form method='post'>";
-                        #echo "<input type='hidden' name='user_id' value='1234'>";
-                        echo "<div class='blockBtn'>";
-                        echo "<div>";
-                        echo "<img src='images/ban-solid.png'>";
-                        echo "</div>";
-                        echo "<div>";
-                        echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='blockBtn'>Block</a>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</form>";
-                        echo "<form method='post'>";
-                        #echo "<input type='hidden' name='user_id' value='1234'>";
-                        echo "<div class='viewProfile'>";
-                        echo "<div>";
-                        echo "<img src='../authority_team/images/user-solid.png'>";
-                        echo "</div>";
-                        echo "<div>";
-                        echo "<a style='cursor: pointer;' class='viewProfile' href='personal_profile.php?id= " . $row["user_id"] . "'>View Profile</a>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</form>";
-                        echo "</td>";
-                        echo "</tr>";
+                    $result = $conn->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<tr>";
+                            echo "<td>" . $row["name"] . "</td>";
+                            echo "<td>" . $row["country"] . "</td>";
+                            echo "<td>" . $row["dob"] . "</td>";
+                            echo "<td>" . $row["state"] . "</td>";
+                            echo "<td>" . $row["mobile"] . "</td>";
+                            echo "<td>" . $row["email"] . "</td>";
+                            echo "<td class='formAction'>";
+                            echo "<form method='post'>";
+                            #echo "<input type='hidden' name='user_id' value='1234'>";
+                            echo "<div class='blockBtn'>";
+                            echo "<div>";
+                            echo "<img src='images/ban-solid.png'>";
+                            echo "</div>";
+                            echo "<div>";
+                            echo "<a style='cursor: pointer;' id='" . $row["user_id"] . "' class='blockBtn'>Block</a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</form>";
+                            echo "<form method='post'>";
+                            #echo "<input type='hidden' name='user_id' value='1234'>";
+                            echo "<div class='viewProfile'>";
+                            echo "<div>";
+                            echo "<img src='../authority_team/images/user-solid.png'>";
+                            echo "</div>";
+                            echo "<div>";
+                            echo "<a style='cursor: pointer;' class='viewProfile' href='personal_profile.php?id= " . $row["user_id"] . "'>View Profile</a>";
+                            echo "</div>";
+                            echo "</div>";
+                            echo "</form>";
+                            echo "</td>";
+                            echo "</tr>";
+                        }
+                    } else {
+                        echo "<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>";
                     }
                 }
-
                 else {
-                    echo "<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>";
+                    echo "403 Forbidden";
                 }
                 ?>
                 </tbody>

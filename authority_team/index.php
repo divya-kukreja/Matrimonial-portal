@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +31,7 @@
                     <a class="nav-link" href="rejected_applications.php">Rejected Applications</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" id="loginBtn1">Logout</a>
+                    <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
                 </li>
             </ul>
         </div>

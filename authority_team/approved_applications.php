@@ -27,7 +27,7 @@
                     <a class="nav-link" href="rejected_applications.php">Rejected Applications</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" id="loginBtn1">Logout</a>
+                    <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
                 </li>
             </ul>
         </div>
@@ -39,19 +39,21 @@
         <?php
             require_once "mysql_connection.php";
 
-            $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='OK' AND auth_id='1'";
+            $authID = $_SESSION["username"] ?? false;
+            $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='OK' AND auth_id='" . $authID . "'";
 
-            $approvedResult = $conn->query($approvedSQL);
+            if (isset($authID)) {
+                $approvedResult = $conn->query($approvedSQL);
 
-            if (isset($approvedResult)) {
-                if ($approvedResult->num_rows > 0) {
-                    while ($approvedResult1 = $approvedResult->fetch_assoc()) {
-                        $approvedUserSQL = "SELECT * FROM profile WHERE user_id='" . $approvedResult1["user_id"] . "'";
-                        $approvedUserConn = $conn->query($approvedUserSQL);
+                if (isset($approvedResult)) {
+                    if ($approvedResult->num_rows > 0) {
+                        while ($approvedResult1 = $approvedResult->fetch_assoc()) {
+                            $approvedUserSQL = "SELECT * FROM profile WHERE user_id='" . $approvedResult1["user_id"] . "'";
+                            $approvedUserConn = $conn->query($approvedUserSQL);
 
-                        if ($approvedUserConn->num_rows > 0) {
-                            while ($approvedUserDetails = $approvedUserConn->fetch_assoc()) {
-                                echo "<div class='card'>";
+                            if ($approvedUserConn->num_rows > 0) {
+                                while ($approvedUserDetails = $approvedUserConn->fetch_assoc()) {
+                                    echo "<div class='card'>";
                                     # Image
                                     echo "<div style='display: flex;justify-content: center;align-items: center;' class='img'>";
                                     echo "<img height='200' width='200' src= '../users/" . $approvedUserDetails['images'] . "'>";
@@ -96,13 +98,13 @@
                                     echo "</div>";
                                     echo "</div>";
                                     echo "</div>";
-                                echo "</div>";
+                                    echo "</div>";
+                                }
                             }
                         }
                     }
                 }
             }
-
             else {
                 echo "NA";
             }

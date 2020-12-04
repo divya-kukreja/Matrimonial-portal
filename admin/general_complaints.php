@@ -29,7 +29,7 @@
                     <a class="nav-link" href="user_complaints.php">User Complaints</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" id="loginBtn1">Logout</a>
+                    <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
                 </li>
             </ul>
         </div>
@@ -54,6 +54,9 @@
                 <?php
                     require_once "mysql_connection.php";
 
+                $adminID = $_SESSION["admin_id"] ?? false;
+
+                if (isset($adminID)) {
                     $sql = "SELECT * FROM contact where is_user='F'";
 
                     $result = $conn->query($sql);
@@ -90,11 +93,10 @@
                             echo "</td>";
                             echo "</tr>";
                         }
-                    }
-
-                    else {
+                    } else {
                         echo "<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>";
                     }
+                }
                 ?>
                 </tbody>
             </table>

@@ -101,7 +101,7 @@ error_reporting(E_ERROR | E_PARSE);
                             <button class="modalBtn" name="login" type="submit">Login</button>
                         </div>
                         <div>
-                            <a href="#">Forgot Password ?</a>
+                            <a href="#">&nbsp;</a>
                         </div>
                     </section>
                 </form>
