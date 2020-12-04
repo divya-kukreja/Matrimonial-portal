@@ -17,7 +17,8 @@ if ($num > 0) {
     $row = mysqli_fetch_assoc($result);
 }
 
-$userID = $_SESSION["username"] ?? false;
+$_SESSION["username"] = $_GET["id"];
+$userID = $_GET["signup_id"] ?? false;
 
 ?>
 
@@ -30,19 +31,19 @@ $userID = $_SESSION["username"] ?? false;
         </label>
         <input type="checkbox" id="btn">
         <ul>
-            <li><a href="">Home</a></li>
+            <li><a href="#">&nbsp;</a></li>
             <li>
                 <label for="btn-1" class="show">Features +</label>
                 <a href="profile.php">My Profile</a>
                 <input type="checkbox" id="btn-1">
                 <ul>
-                    <li><?php echo '<a href="my_profile.php?id=' . $userID . '">view_profile</a>' ?></li>
-                    <li><?php echo '<a href="edit_profile.php?id=' . $userID . '">Edit_profile</a>' ?></li>
+                    <li><?php echo '<a href="my_profile.php?id=' . $_SESSION["username"] . '">View_profile</a>' ?></li>
+                    <li><?php echo '<a href="edit_profile.php?id=' . $_SESSION["username"] . '">Edit_profile</a>' ?></li>
                 </ul>
             </li>
             <li>
                 <label for="btn-2" class="show">Services +</label>
-                <?php echo '<a href="partner_search.php?id=' . $userID . '">Partner search</a>' ?>
+                <?php echo '<a href="partner_search.php?id=' . $_SESSION["username"] . '">Partner search</a>' ?>
                 <input type="checkbox" id="btn-2">
                 <ul>
                     <!-- <li><a href="#">Age</a></li>
