@@ -119,6 +119,9 @@
                 $showAlert = true;
 
                 if ($showAlert) {
+                    session_start();
+
+                    $_SESSION["username"] = $signup_id;
                     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> You should check in on some of those fields below.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -145,7 +148,7 @@
             </div>
             <div class="profile">
                 <img src="user_images/default_view.jpg" id="img" alt="" height="60" width="60"><br>
-                <input type="file" name="image" onchange="preview(event)" id="upload"><br>
+                <input type="file" name="image" onchange="preview(event)" id="upload" required><br>
             </div>
 
             <script>

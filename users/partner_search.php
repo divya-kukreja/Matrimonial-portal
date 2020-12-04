@@ -42,8 +42,9 @@
 
         if ($num > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo
-                    '<main>
+                if ($row["user_id"] !== $_SESSION["username"]) {
+                    echo
+                        '<main>
         <!-- Submodule -->
         <div class="card">
             <div class="img">
@@ -122,6 +123,7 @@
         <!-- End Submodule -->
       
     </main>';
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 <?php
 
 require "_dbconnect.php";
+session_start();
 ?>
 
 <?php
@@ -15,6 +16,8 @@ $num = mysqli_num_rows($result);
 if ($num > 0) {
     $row = mysqli_fetch_assoc($result);
 }
+
+$userID = $_SESSION["username"] ?? false;
 
 ?>
 
@@ -33,13 +36,13 @@ if ($num > 0) {
                 <a href="profile.php">My Profile</a>
                 <input type="checkbox" id="btn-1">
                 <ul>
-                    <li><?php echo '<a href="my_profile.php?id=' . $row['user_id'] . '">view_profile</a>' ?></li>
-                    <li><?php echo '<a href="edit_profile.php?id=' . $row['user_id'] . '">Edit_profile</a>' ?></li>
+                    <li><?php echo '<a href="my_profile.php?id=' . $userID . '">view_profile</a>' ?></li>
+                    <li><?php echo '<a href="edit_profile.php?id=' . $userID . '">Edit_profile</a>' ?></li>
                 </ul>
             </li>
             <li>
                 <label for="btn-2" class="show">Services +</label>
-                <?php echo '<a href="partner_search.php?id=' . $row['user_id'] . '">Partner search</a>' ?>
+                <?php echo '<a href="partner_search.php?id=' . $userID . '">Partner search</a>' ?>
                 <input type="checkbox" id="btn-2">
                 <ul>
                     <!-- <li><a href="#">Age</a></li>
@@ -55,14 +58,15 @@ if ($num > 0) {
                     </li> -->
                 </ul>
             </li>
-            <li><a href="contact_us.php">Contact</a></li>
+            <li><a href="logout.php" id="logout" style="color: white;">Logout</a></li>
         </ul>
         <div class="tagline">
             <span class="brand-tagline">You know you're in love when you can't fall asleep because reality is finally better than your dreams.</span>
         </div>
 </nav>
 
-<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<!-- jQuery CDN -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script>
     $('.icon').click(function() {

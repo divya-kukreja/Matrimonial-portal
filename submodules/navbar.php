@@ -4,6 +4,7 @@
     if ($url == '/IP_Miniproject/') {
         $url = "index";
     }
+    error_reporting(0);
 ?>
 <nav>
     <div class="navbar-top">

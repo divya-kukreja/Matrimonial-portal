@@ -77,26 +77,30 @@
             $partner        = $_POST['partner'];
             //$timestamp = $_POST['timestamp'];
 
-            $userID = $_GET["id"];
+            $userID1 = $_GET["id"];
 
-            $del = "Delete from `profile` where user_id='" . $userID . "'";
-            $delres = mysqli_query($conn, $del);
-            $sql =    "INSERT INTO `profile`(`user_id`, `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`) 
-            VALUES ('$userID','$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp())";
+            if ($userID1 == $_SESSION["username"]) {
+                $del = "Delete from `profile` where user_id='" . $userID1 . "'";
+                $delres = mysqli_query($conn, $del);
+                $sql = "INSERT INTO `profile`(`user_id`, `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`) 
+            VALUES ('$userID1','$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp())";
 
-            $result = mysqli_query($conn, $sql);
-            $showAlert = true;
+                $result = mysqli_query($conn, $sql);
+                $showAlert = true;
 
 
-
-
-            if ($showAlert) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                if ($showAlert) {
+                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> You should check in on some of those fields below.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>';
+                }
+            }
+
+            else {
+                echo die("403 Access forbidden");
             }
         }
 
@@ -117,27 +121,26 @@
             <br>
             <div class="asterick">Fields are mark with * are compulsory</div>
             <?php
-            $userID = $_GET["id"] ?? false;
+            require_once "../admin/mysql_connection.php";
+            $userID = $_SESSION["username"] ?? false;
 
             if (isset($userID)) {
-                $userSQL = "input * FROM profile WHERE user_id='" . $userID . "'";
+                $userSQL = "select * FROM profile WHERE user_id='" . $userID . "'";
 
-                $userExec = mysqli_query($conn, $userSQL);
+                $userExec = $conn->query($userSQL);
 
-                //echo $row['name'];
+                while($row = $userExec->fetch_assoc()) {
 
-
-
-                echo
-                    '<div class="general">
+                    echo
+                        '<div class="general">
                 <span>GENERAL INFORMATION</span>
             </div>'
-                    .
-                    # Image
-                    "<div style='display: flex;justify-content: center;align-items: center;'>".
-                    "<img height='200' width='200' src= '" . $row['images'] . "'>".
-                    "</div>".
-                    '
+                        .
+                        # Image
+                        "<div style='display: flex;justify-content: center;align-items: center;'>" .
+                        "<img height='200' width='200' src= '" . $row['images'] . "'>" .
+                        "</div>" .
+                        '
             <br>
             <div class="info">
                 <div class="same-for-all">
@@ -347,6 +350,7 @@
                     <span class="text-muted pull-right" id="count3">2000</span><span> &nbsp;Characters left</span>
                 </div>
             </div>';
+                }
             }
             ?>
             <div class="info">
