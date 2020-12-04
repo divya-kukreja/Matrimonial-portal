@@ -109,34 +109,32 @@
                 $message = "Successful Upload";
             }
 
-            $sql =    "INSERT INTO `profile`( `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`, `images`) 
-            VALUES ('$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp(), '$imagePath')";
+            $signup_id = $_GET["signup_id"] ?? false;
 
-            $result = mysqli_query($conn, $sql);
-            $showAlert = true;
+            if (isset($signup_id)) {
+                $sql = "INSERT INTO `profile`(`user_id`, `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`, `images`, `signup_id`) 
+            VALUES ('$signup_id', '$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp(), '$imagePath', '$signup_id')";
 
-            if ($showAlert) {
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                $result = mysqli_query($conn, $sql);
+                $showAlert = true;
+
+                if ($showAlert) {
+                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
                 <strong>Success!</strong> You should check in on some of those fields below.
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>';
+                }
+            }
+
+            else {
+                echo "403 Forbidden";
             }
         }
 
         ?>
-
-
-
-
-
         <!-- Handled request post -->
-
-
-
-
-
         <form action=" <?php $_SERVER['REQUEST_URI']; ?>" method="POST" enctype="multipart/form-data">
 
             <br>
@@ -146,7 +144,7 @@
                 <span>GENERAL INFORMATION</span>
             </div>
             <div class="profile">
-                <img src="../images/divya.png" id="img" alt=""><br>
+                <img src="user_images/default_view.jpg" id="img" alt="" height="60" width="60"><br>
                 <input type="file" name="image" onchange="preview(event)" id="upload"><br>
             </div>
 
