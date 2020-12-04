@@ -11,6 +11,8 @@
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
     <!-- jQuery CDN -->
     <script src="js/jquery-3.5.1.min.js"></script>
+    <!-- Sweetalert CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>Home page</title>
 </head>
 <body>
@@ -127,7 +129,7 @@
                 url: "ajax/approved_application.php?id=" + this.id,
                 type: "GET",
                 success: function (data) {
-                    console.log("approved");
+                    swal("Approved!", "The user has been approved!", "success");
                 }
             })
         })
@@ -137,7 +139,7 @@
                 url: "ajax/rejected_application.php?id=" + this.id,
                 type: "GET",
                 success: function (data) {
-                    console.log("rejected");
+                    swal("Rejected!", "The user has been deleted!", "success");
                 }
             })
         })
