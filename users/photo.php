@@ -38,7 +38,7 @@
                 img.src = result;
             }
             reader.readAsDataURL(input);
-        };
+        }
     </script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>

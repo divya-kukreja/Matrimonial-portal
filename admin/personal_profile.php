@@ -51,7 +51,10 @@
                 echo "<div class='asterick'>&nbsp;</div>";
                 echo "<div class='general'><span>GENERAL INFORMATION</span></div>";
 
-                require_once "../users/photo.php";
+                # Image
+                echo "<div style='display: flex;justify-content: center;align-items: center;'>";
+                echo "<img height='200' width='200' src= '../users/" . $user['images'] . "'>";
+                echo "</div>";
 
                 echo "<br>";
                 echo "<div class='container'>";

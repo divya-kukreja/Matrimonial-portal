@@ -52,8 +52,9 @@
                 if ($approvedUserConn->num_rows > 0) {
                     while ($approvedUserDetails = $approvedUserConn->fetch_assoc()) {
                         echo "<div class='card'>";
-                        echo "<div class='img'>";
-                        echo "<a href='#'><img src='../images/ladyprofile.png' alt='Lady' height='200'></a>";
+                        # Image
+                        echo "<div style='display: flex;justify-content: center;align-items: center;' class='img'>";
+                        echo "<img height='200' width='200' src= '../users/" . $approvedUserDetails['images'] . "'>";
                         echo "</div>";
                         echo "<div class='info'>";
                         echo "<div>";

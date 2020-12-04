@@ -1,40 +1,61 @@
+<?php
+
+require "_dbconnect.php";
+?>
+
+<?php
+
+$sql = "SELECT * FROM `profile`";
+$result = mysqli_query($conn, $sql);
+
+$num = mysqli_num_rows($result);
+//echo $num;
+
+
+if ($num > 0) {
+    $row = mysqli_fetch_assoc($result);
+}
+
+?>
+
+
 <nav>
     <div class="navbar-top">
-        <a href="index.php"><img src="../images/logo.png" alt="brand-logo" class="brand-logo"></a>
+        <a href=""><img src="../images/logo.png" alt="brand-logo" class="brand-logo"></a>
         <label for="btn" class="icon">
             <span class="fa fa-bars"></span>
         </label>
         <input type="checkbox" id="btn">
         <ul>
-            <li><a href="../index.php">Home</a></li>
+            <li><a href="">Home</a></li>
             <li>
                 <label for="btn-1" class="show">Features +</label>
                 <a href="profile.php">My Profile</a>
                 <input type="checkbox" id="btn-1">
                 <ul>
-                    <li><a href="my_profile.php">view_profile</a></li>
-                    <li><a href="edit_profile.php">Edit_profile</a></li>
+                    <li><?php echo '<a href="my_profile.php?id=' . $row['user_id'] . '">view_profile</a>' ?></li>
+                    <li><?php echo '<a href="edit_profile.php?id=' . $row['user_id'] . '">Edit_profile</a>' ?></li>
                 </ul>
             </li>
             <li>
                 <label for="btn-2" class="show">Services +</label>
-                <a href="partner_search.php">Partner search</a>
+                <?php echo '<a href="partner_search.php?id=' . $row['user_id'] . '">Partner search</a>' ?>
                 <input type="checkbox" id="btn-2">
                 <ul>
-                    <li><a href="#">Age</a></li>
+                    <!-- <li><a href="#">Age</a></li>
                     <li><a href="#">Qualification</a></li>
                     <li>
                         <label for="btn-3" class="show">More +</label>
                         <a href="#">More <span class="fa fa-plus"></span></a>
-                        <!-- <input type="checkbox" id="btn-3"> -->
-                        <ul>
+                         <input type="checkbox" id="btn-3"> -->
+                    <!-- <ul>
                             <li><a href="#">Profession</a></li>
                             <li><a href="#">Caste</a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </li>
-            <li><a href="../contact_us.php">Contact</a></li>
+            <li><a href="contact_us.php">Contact</a></li>
         </ul>
         <div class="tagline">
             <span class="brand-tagline">You know you're in love when you can't fall asleep because reality is finally better than your dreams.</span>
