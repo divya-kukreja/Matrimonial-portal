@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
+    <!-- Sweetalert CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <nav>
@@ -20,10 +22,16 @@
                 <a class="nav-link" href="index.php">Home</a>
             </li>
             <li>
-                <a class="nav-link" href="approved_applications.php">Approved Applications</a>
+                <a class="nav-link" href="general_complaints.php">General Complaints</a>
             </li>
             <li>
-                <a class="nav-link" href="rejected_applications.php">Rejected Applications</a>
+                <a class="nav-link" href="user_complaints.php">User Complaints</a>
+            </li>
+            <li>
+                <a class="nav-link" href="authority_team_details.php">Track Authority Team</a>
+            </li>
+            <li>
+                <a class="nav-link" id="authority_register_btn" href="#" style="color: #ffffff;">Register Authority</a>
             </li>
             <li>
                 <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
@@ -254,6 +262,9 @@
     else {
         echo "<h2>No user selected</h2>";
     }
+    ?>
+    <?php
+    require_once "register_authority.php";
     ?>
 </main>
 </body>

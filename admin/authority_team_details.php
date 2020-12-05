@@ -7,14 +7,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Local CSS File -->
     <link rel="stylesheet" href="../css/index.css">
-    <link rel="stylesheet" href="../authority_team/css/index.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
     <!-- jQuery CDN -->
     <script src="../authority_team/js/jquery-3.5.1.min.js"></script>
     <!-- Sweetalert CDN -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <title>General Complaints</title>
+    <title>Home page</title>
 </head>
 <body>
 <nav>
@@ -28,10 +27,10 @@
                 <a class="nav-link" href="general_complaints.php">General Complaints</a>
             </li>
             <li>
-                <a class="nav-link active" href="user_complaints.php">User Complaints</a>
+                <a class="nav-link" href="user_complaints.php">User Complaints</a>
             </li>
             <li>
-                <a class="nav-link" href="authority_team_details.php">Track Authority Team</a>
+                <a class="nav-link active" href="authority_team_details.php">Track Authority Team</a>
             </li>
             <li>
                 <a class="nav-link" id="authority_register_btn" href="#" style="color: #ffffff;">Register Authority</a>
@@ -50,50 +49,34 @@
         <table class="table table-bordered">
             <thead>
             <tr>
-                <th>Contact ID</th>
-                <th>Full Name</th>
-                <th>Email Address</th>
-                <th>Message</th>
-                <th>Complaint Date</th>
+                <th>Name of Authority Team</th>
                 <th>Action</th>
             </tr>
             </thead>
             <tbody>
             <?php
             require_once "mysql_connection.php";
+
             $adminID = $_SESSION["admin_id"] ?? false;
 
             if (isset($adminID)) {
-                $sql = "SELECT * FROM contact where is_user='T'";
+                $sql = "SELECT * FROM authority";
 
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
-                        echo "<td>" . $row["contact_id"] . "</td>";
-                        echo "<td>" . $row["full_name"] . "</td>";
-                        echo "<td>" . $row["email_address"] . "</td>";
-                        echo "<td>" . $row["message"] . "</td>";
-                        echo "<td>" . $row["timestamp"] . "</td>";
+                        echo "<td>" . $row["name"] . "</td>";
                         echo "<td class='formAction'>";
                         echo "<form method='post'>";
-                        echo "<div class='approveBtn'>";
+                        #echo "<input type='hidden' name='user_id' value='1234'>";
+                        echo "<div class='blockBtn'>";
                         echo "<div>";
-                        echo "<img src='../authority_team/images/check-circle-regular.png' alt=''>";
+                        echo "<img src='images/ban-solid.png'>";
                         echo "</div>";
                         echo "<div>";
-                        echo "<a style='cursor: pointer;' id='" . $row["contact_id"] . "' class='approveBtn resolve'>Complaint Resolved</a>";
-                        echo "</div>";
-                        echo "</div>";
-                        echo "</form>";
-                        echo "<form method='post'>";
-                        echo "<div class='rejectBtn'>";
-                        echo "<div>";
-                        echo "<img src='../authority_team/images/times-solid.png'>";
-                        echo "</div>";
-                        echo "<div>";
-                        echo "<a style='cursor: pointer;' id='" . $row["contact_id"] . "' class='rejectBtn rejected'>Complaint Rejected</a>";
+                        echo "<a style='cursor: pointer;' id='" . $row["auth_id"] . "' class='blockBtn'>Block</a>";
                         echo "</div>";
                         echo "</div>";
                         echo "</form>";
@@ -101,10 +84,9 @@
                         echo "</tr>";
                     }
                 } else {
-                    echo "<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>";
+                    echo "<tr><td>NA</td><td>NA</td></tr>";
                 }
             }
-
             else {
                 echo "403 Forbidden";
             }
@@ -112,27 +94,17 @@
             </tbody>
         </table>
     </div>
-    <?php
-    require_once "register_authority.php";
-    ?>
 </main>
+<?php
+require_once "register_authority.php";
+?>
 <script>
-    $(".resolve").on("click", function () {
+    $(".blockBtn").on("click", function () {
         $.ajax({
-            url: "ajax/general_complaints.php?id=" + this.id,
+            url: "ajax/authority_team_delete.php?id=" + this.id,
             type: "GET",
             success: function (data) {
-                console.log("approved");
-            }
-        })
-    })
-
-    $(".rejected").on("click", function () {
-        $.ajax({
-            url: "ajax/general_complaints.php?id=" + this.id,
-            type: "GET",
-            success: function (data) {
-                console.log("approved");
+                swal("Rejected!", "The user has been deleted!", "success");
             }
         })
     })

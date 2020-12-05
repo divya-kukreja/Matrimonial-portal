@@ -12,6 +12,8 @@
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
     <!-- jQuery CDN -->
     <script src="../authority_team/js/jquery-3.5.1.min.js"></script>
+    <!-- Sweetalert CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <title>General Complaints</title>
 </head>
 <body>
@@ -27,6 +29,12 @@
                 </li>
                 <li>
                     <a class="nav-link" href="user_complaints.php">User Complaints</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="authority_team_details.php">Track Authority Team</a>
+                </li>
+                <li>
+                    <a class="nav-link" id="authority_register_btn" style="color: #ffffff;" href="#">Register Authority</a>
                 </li>
                 <li>
                     <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
@@ -56,7 +64,7 @@
 
                 $adminID = $_SESSION["admin_id"] ?? false;
 
-                if (isset($adminID)) {
+                if (isset($adminID) && $adminID !== false) {
                     $sql = "SELECT * FROM contact where is_user='F'";
 
                     $result = $conn->query($sql);
@@ -123,5 +131,8 @@
             })
         })
     </script>
+    <?php
+        require_once "register_authority.php";
+    ?>
 </body>
 </html>

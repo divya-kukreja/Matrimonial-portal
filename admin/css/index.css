@@ -21,7 +21,8 @@
     padding: 5px;
 }
 
-#approveTable .formAction .blockBtn {
+#approveTable .formAction .blockBtn
+{
     display: flex;
     flex-wrap: wrap;
     align-items: center;

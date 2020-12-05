@@ -66,7 +66,7 @@
 
   <body>
     <div class="wrapper">
-      <div class="title">Authority Login</div>
+      <div class="title">Admin Login</div>
             <form method ="POST">
                     <div class="field">
                         <input type="text" name="uname" required>

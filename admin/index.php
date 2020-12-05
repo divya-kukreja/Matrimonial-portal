@@ -30,6 +30,12 @@
                     <a class="nav-link" href="user_complaints.php">User Complaints</a>
                 </li>
                 <li>
+                    <a class="nav-link" href="authority_team_details.php">Track Authority Team</a>
+                </li>
+                <li>
+                    <a class="nav-link" id="authority_register_btn" href="#" style="color: #ffffff;">Register Authority</a>
+                </li>
+                <li>
                     <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
                 </li>
             </ul>
@@ -110,6 +116,9 @@
             </table>
         </div>
     </main>
+    <?php
+        require_once "register_authority.php";
+    ?>
     <script>
         $(".blockBtn").on("click", function () {
             $.ajax({
