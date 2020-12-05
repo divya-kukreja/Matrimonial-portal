@@ -69,6 +69,16 @@ $userID = $_GET["signup_id"] ?? false;
                     </li> -->
                 </ul>
             </li>
+            <li>
+                <label for="btn-1" class="show">Requests +</label>
+                <a href="#">Requests</a>
+                <input type="checkbox" id="btn-1">
+                <ul>
+                    <li><?php echo '<a href="sent_requests.php?id=' . $_SESSION["username"] . '">Sent Requests</a>' ?></li>
+                    <li><?php echo '<a href="received_requests.php?id=' . $_SESSION["username"] . '">Received Requests</a>' ?></li>
+                    <li><?php echo '<a href="edit_profile.php?id=' . $_SESSION["username"] . '">My Matches</a>' ?></li>
+                </ul>
+            </li>
             <li><a href="logout.php" id="logout" style="color: white;">Logout</a></li>
         </ul>
         <div class="tagline">

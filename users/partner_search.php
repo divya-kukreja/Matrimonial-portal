@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +12,11 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
+    <!-- jQuery CDN -->
+    <script src="../authority_team/js/jquery-3.5.1.min.js"></script>
+
+    <!-- Sweetalert CDN -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 
 <body>
@@ -98,7 +102,14 @@
                     <!-- For Buttons -->
                     <div class = "float-right">
                     <div class="buttons flex">
-                       
+                        <a href="#" class="button express" id="' . $row['user_id'] . '">
+                            <div>
+                                <img src="../images/smile-regular.png" alt="smile">
+                            </div>
+                            <div>
+                                <span>Express Interest</span>
+                            </div>
+                        </a>
                         <a  href ="add_shortlist.php?id=' . $row['user_id'] . '&&uid=' . $userID . '" class="button shortlist">
                             <div>
                                 <img src="../images/star-regular.png" alt="shortlist">
@@ -135,5 +146,15 @@
     ?>
 
 </body>
-
+<script>
+    $(".express").on("click", function () {
+        $.ajax({
+            url: "ajax/express_interest.php?id=" + this.id,
+            type: "GET",
+            success: function () {
+                swal("Sent", "The request has been sent successfully", "success")
+            }
+        })
+    })
+</script>
 </html>
