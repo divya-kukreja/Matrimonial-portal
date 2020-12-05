@@ -1,12 +1,12 @@
 <?php
     require_once "../mysql_connection.php";
-
     $userID = $_GET["id"] ?? false;
+    $authID = $_SESSION["auth_id"] ?? "1";
 
     if ($userID !== false) {
         try {
             $conn->begin_transaction();
-            $insertSQL = "INSERT INTO is_authorized_user(user_id, auth_id, remarks) VALUES(" . "'$userID', " . "'1', " . "'OK'" .")";
+            $insertSQL = "INSERT INTO is_authorized_user(user_id, auth_id, remarks) VALUES(" . "'$userID', " . "'" . $authID . "', " . "'OK'" .")";
             $updateUsersTable = "UPDATE profile SET is_authorized='T' WHERE user_id=" . $userID;
 
             if ($userID !== '' && $userID !== ' ') {

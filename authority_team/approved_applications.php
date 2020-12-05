@@ -39,7 +39,8 @@
         <?php
             require_once "mysql_connection.php";
 
-            $authID = $_SESSION["username"] ?? false;
+            session_start();
+            $authID = $_SESSION["auth_id"] ?? false;
             $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='OK' AND auth_id='" . $authID . "'";
 
             if (isset($authID)) {

@@ -2,6 +2,7 @@
 
 require "_dbconnect.php";
 session_start();
+error_reporting(0);
 ?>
 
 <?php
@@ -17,7 +18,16 @@ if ($num > 0) {
     $row = mysqli_fetch_assoc($result);
 }
 
-$_SESSION["username"] = $_GET["id"];
+if (isset($_GET["id"])) {
+    $_SESSION["username"] = $_GET["id"];
+}
+
+else if (isset($_GET["uid"])) {
+    $_SESSION["username"] = $_GET["uid"];
+}
+else {
+    $_SESSION["username"] = $_GET["signup_id"];
+}
 $userID = $_GET["signup_id"] ?? false;
 
 ?>

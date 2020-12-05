@@ -29,7 +29,7 @@
                         text: "Welcome to our matrimonial website",
                         icon: "success",
                     });
-                    <?php session_start(); $_SESSION["username"] = $row['auth_id'] ?>
+                    <?php session_start(); $_SESSION["auth_id"] = $row['auth_id'] ?>
                     location.replace("index.php");
                 </script>
                 <?php

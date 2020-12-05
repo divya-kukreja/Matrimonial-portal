@@ -37,9 +37,10 @@
 </nav>
 <main>
     <?php
+    session_start();
     require_once "mysql_connection.php";
 
-    $authID = $_SESSION["username"] ?? false;
+    $authID = $_SESSION["auth_id"] ?? false;
     $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='F' AND auth_id='" . $authID . "'";
 
     $approvedResult = $conn->query($approvedSQL);
