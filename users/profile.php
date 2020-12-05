@@ -43,8 +43,9 @@
         <div class="note">
             <p>NOTE : &nbsp; The profile form has to be complete in order to proceed further.In case any information is not finished is not furnished at the time of submitting application,then the same will not be considered for the purpos of match making.For further refer our policy rules</p>
         </div>
-        <a href="../privacy.php"><button class="btn-1">Read More</button></a>
-
+        <!--
+        <a href="#"><button class="btn-1">&nbsp;</button></a>
+-->
 
         <!-- Handling the form request -->
         <?php
