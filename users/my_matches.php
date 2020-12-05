@@ -30,7 +30,7 @@ require "submodules/_dbconnect.php";
 $userID = $_GET["id"] ?? false;
 
 if (isset($userID)) {
-    $expressedInterestID = "SELECT * FROM expressed_interest WHERE expressed_interest_id='" . $userID . "' AND status = 'F'";
+    $expressedInterestID = "SELECT * FROM expressed_interest WHERE expressed_interest_id='" . $userID . "' OR user_id='" . $userID . "' AND status = 'T'";
 
     $res = $conn->query($expressedInterestID);
 
@@ -98,23 +98,8 @@ if (isset($userID)) {
                       
                     <!-- For Buttons -->
                     <div class = "float-right">
+                    
                     <div class="buttons flex">
-                        <a href="#" class="button accept" id="' . $row["user_id"] . '">
-                            <div>
-                                <img src="../images/check-solid.png" alt="smile">
-                            </div>
-                            <div>
-                                <span>Accept</span>
-                            </div>
-                        </a>
-                        <a id="' . $row["user_id"] . '" class="button reject" href="#">
-                            <div>
-                                <img src="../images/times-solid.png" alt="shortlist">
-                            </div>
-                            <div>
-                                <span>Reject</span>
-                            </div>
-                        </a>
                         <a href="partner_search_profile.php?id=' . $row['user_id'] . '" class="button">
                             <div>
                                 <img src="../images/user-tag-solid.png" alt="user">
@@ -141,26 +126,5 @@ if (isset($userID)) {
     }
 }
 ?>
-<script>
-    $(".accept").on("click", function () {
-        $.ajax({
-            url: "ajax/accept_request.php?id=" + this.id,
-            type: "GET",
-            success: function () {
-                swal("Accepted", "The request has been accepted successfully", "success")
-            }
-        })
-    })
-
-    $(".reject").on("click", function () {
-        $.ajax({
-            url: "ajax/reject_request.php?id=" + this.id,
-            type: "GET",
-            success: function () {
-                swal("Rejected", "The request has been rejected successfully", "success")
-            }
-        })
-    })
-</script>
 </body>
 </html>

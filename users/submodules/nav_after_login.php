@@ -76,7 +76,7 @@ $userID = $_GET["signup_id"] ?? false;
                 <ul>
                     <li><?php echo '<a href="sent_requests.php?id=' . $_SESSION["username"] . '">Sent Requests</a>' ?></li>
                     <li><?php echo '<a href="received_requests.php?id=' . $_SESSION["username"] . '">Received Requests</a>' ?></li>
-                    <li><?php echo '<a href="edit_profile.php?id=' . $_SESSION["username"] . '">My Matches</a>' ?></li>
+                    <li><?php echo '<a href="my_matches.php?id=' . $_SESSION["username"] . '">My Matches</a>' ?></li>
                 </ul>
             </li>
             <li><a href="logout.php" id="logout" style="color: white;">Logout</a></li>
