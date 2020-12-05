@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../mysql_connection.php";
 
 $userID = $_GET["id"] ?? false;
