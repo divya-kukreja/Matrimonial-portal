@@ -38,7 +38,7 @@ nav ul li a {
   line-height: 70px;
   text-decoration: none;
   font-size: 18px;
-  padding: 8px 15px;
+  padding: 8px 8px;
 }
 nav ul li a:hover {
   color: white;
@@ -51,7 +51,7 @@ nav ul ul li a:hover {
 nav ul ul {
   position: absolute;
   top: 90px;
-  border-top: 3px solid rgb(31, 194, 243);
+  /* border-top: 3px solid rgb(31, 194, 243); */
   opacity: 0;
   visibility: hidden;
   transition: top 0.3s;
@@ -67,13 +67,13 @@ nav ul li:hover > ul {
 nav ul ul li {
   position: relative;
   margin: 0px;
-  width: 150px;
+  width: 200px;
   float: none;
   display: list-item;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
 }
 nav ul ul li a {
-  line-height: 50px;
+  line-height: 38px;
 }
 nav ul ul ul li {
   position: relative;
@@ -90,9 +90,9 @@ input {
   margin-left: 40px;
 }
 @media all and (max-width: 700px) {
-  .brand-logo {
+  /* .brand-logo {
     visibility: hidden;
-  }
+  } */
   nav {
     background-image: url("../../images/navbar.png");
     height: 400px;
@@ -175,7 +175,7 @@ input {
 
 .tagline {
   display: flex;
-  margin-top: 55px;
+  margin-top: 80px;
 }
 
 @media screen and (max-width: 800px) {
