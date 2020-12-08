@@ -32,7 +32,7 @@
                 <li><a href="#">&nbsp;</a></li>
                 <li>
                     <label for="btn-1" class="show">Features +</label>
-                    <a href="profile.php">My Profile</a>
+                    <a href="profile.php?signup_id=<?php  echo $_SESSION["username"];?>">My Profile</a>
                     <input type="checkbox" id="btn-1">
                     <ul>
                         <li><?php echo '<a href="my_profile.php?id=' . $_SESSION["username"] . '">View_profile</a>' ?></li>
@@ -86,6 +86,10 @@
 
         $userExec = mysqli_query($conn, $userSQL);
 
+        $ans = $conn->query($userSQL);
+
+        $ansUser = $ans->fetch_assoc();
+
         // if ($userExec->num_rows > 0) {
         //     while ($user = $userExec->fetch_assoc())
         $sql = "SELECT * FROM `profile`";
@@ -95,11 +99,12 @@
         //echo $num;
 
 
-        if ($num > 0) {
-            while ($row = mysqli_fetch_assoc($result)) {
-                if ($row["user_id"] !== $_SESSION["username"]) {
-                    echo
-                        '<main>
+        if ($ansUser['is_authorized'] !== 'F') {
+            if ($num > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    if ($row["user_id"] !== $_SESSION["username"]) {
+                        echo
+                            '<main>
         <!-- Submodule -->
         <div class="card">
             <div class="img">
@@ -185,8 +190,13 @@
         <!-- End Submodule -->
       
     </main>';
+                    }
                 }
             }
+        }
+
+        else {
+            echo "You are not yet authorized to perform this action";
         }
     }
     ?>

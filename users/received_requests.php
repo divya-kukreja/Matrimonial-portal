@@ -31,7 +31,7 @@
                 <li><a href="#">&nbsp;</a></li>
                 <li>
                     <label for="btn-1" class="show">Features +</label>
-                    <a href="profile.php">My Profile</a>
+                    <a href="profile.php?signup_id=<?php  echo $_SESSION["username"];?>">My Profile</a>
                     <input type="checkbox" id="btn-1">
                     <ul>
                         <li><?php echo '<a href="my_profile.php?id=' . $_SESSION["username"] . '">View_profile</a>' ?></li>

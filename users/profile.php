@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,7 +41,7 @@
                 <li><a href="#">&nbsp;</a></li>
                 <li>
                     <label for="btn-1" class="show">Features +</label>
-                    <a href="profile.php">My Profile</a>
+                    <a href="profile.php?signup_id=<?php  echo $_SESSION["username"];?>">My Profile</a>
                     <input type="checkbox" id="btn-1">
                     <ul>
                         <li><?php echo '<a href="my_profile.php?id=' . $_SESSION["username"] . '">View_profile</a>' ?></li>
@@ -96,7 +95,102 @@
     require "submodules/_dbconnect.php";
 
     ?>
-    <section>
+
+<!-- Handling the form request -->
+<?php
+$showAlert = false;
+$method = $_SERVER['REQUEST_METHOD'];
+//echo $method;       // method check krne ke liye get hai ki post
+
+if ($method == "POST") {
+    // Insert into profile table
+    $name = $_POST['name'];
+    $country = $_POST['country'];
+    $dob = $_POST['dob'];
+    $city     = $_POST['city'];
+    $state    = $_POST['state'];
+    $mobile     = $_POST['mobile'];
+    $email     = $_POST['email'];
+    $gender     = $_POST['gender'];
+    $citizen     = $_POST['citizen'];
+    $height     = $_POST['height'];
+    $maritial    = $_POST['maritial'];
+    $children     = $_POST['children'];
+    $smoke     = $_POST['smoke'];
+    $drink     = $_POST['drink'];
+    $diet     = $_POST['diet'];
+    $blood     = $_POST['blood'];
+    $bodytype     = $_POST['bodytype'];
+    $member     = $_POST['member'];
+    $sibling     = $_POST['sibling'];
+    $moccupation     = $_POST['moccupation'];
+    $foccupation     = $_POST['foccupation'];
+    $familyvalues     = $_POST['familyvalues'];
+    $familystatus     = $_POST['familystatus'];
+    $religion     = $_POST['religion'];
+    $mtongue     = $_POST['mtongue'];
+    $caste     = $_POST['caste'];
+    $countrybirth     = $_POST['countrybirth'];
+    $citybirth     = $_POST['citybirth'];
+    $manglik              = $_POST['manglik'];
+    $edulevel              = $_POST['edulevel'];
+    $edufield              = $_POST['edufield'];
+    $occupation              = $_POST['occupation'];
+    $income              = $_POST['income'];
+    $self           = $_POST['self'];
+    $partner        = $_POST['partner'];
+    //$timestamp = $_POST['timestamp'];
+
+    $maxIDSQL = "SELECT max(user_id) as user_id FROM profile";
+
+    $id=1;
+    $res = $conn->query($maxIDSQL);
+
+    if ($res->num_rows > 0) {
+        while ($result = $res->fetch_assoc()) {
+            $id = $result["user_id"] + 1;
+        }
+    }
+
+    $_FILES['image']['name'] = "user-" . $id . ".jpg";
+    $imagePath = "user_images/" . basename($_FILES['image']['name']);
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
+        $message = "Successful Upload";
+    }
+
+    $signup_id = $_GET["signup_id"] ?? false;
+
+    if (isset($signup_id)) {
+        $sql = "INSERT INTO `profile`(`user_id`, `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`, `images`, `signup_id`) 
+            VALUES ('$signup_id', '$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp(), '$imagePath', '$signup_id')";
+
+        $result = mysqli_query($conn, $sql);
+        $showAlert = true;
+
+        if ($showAlert) {
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong>Success!</strong> You should check in on some of those fields below.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>';
+        }
+    }
+
+    else {
+        echo "403 Forbidden";
+    }
+}
+
+?>
+
+<?php
+$checkIfProfileComplete = $conn->query("SELECT * FROM profile WHERE user_id='" . $_SESSION["username"] . "'");
+
+if ($checkIfProfileComplete->num_rows <= 0) {
+    echo '
+              <section>
         <br>
         <div class="heading">
             Make Your Profile &nbsp;<img src="../images/profile.png" alt="">
@@ -104,104 +198,11 @@
         <div class="note">
             <p>NOTE : &nbsp; The profile form has to be complete in order to proceed further.In case any information is not finished is not furnished at the time of submitting application,then the same will not be considered for the purpos of match making.For further refer our policy rules</p>
         </div>
-        <!--
-        <a href="#"><button class="btn-1">&nbsp;</button></a>
--->
-
-        <!-- Handling the form request -->
-        <?php
-        $showAlert = false;
-        $method = $_SERVER['REQUEST_METHOD'];
-        //echo $method;       // method check krne ke liye get hai ki post
-
-        if ($method == "POST") {
-            // Insert into profile table
-            $name = $_POST['name'];
-            $country = $_POST['country'];
-            $dob = $_POST['dob'];
-            $city     = $_POST['city'];
-            $state    = $_POST['state'];
-            $mobile     = $_POST['mobile'];
-            $email     = $_POST['email'];
-            $gender     = $_POST['gender'];
-            $citizen     = $_POST['citizen'];
-            $height     = $_POST['height'];
-            $maritial    = $_POST['maritial'];
-            $children     = $_POST['children'];
-            $smoke     = $_POST['smoke'];
-            $drink     = $_POST['drink'];
-            $diet     = $_POST['diet'];
-            $blood     = $_POST['blood'];
-            $bodytype     = $_POST['bodytype'];
-            $member     = $_POST['member'];
-            $sibling     = $_POST['sibling'];
-            $moccupation     = $_POST['moccupation'];
-            $foccupation     = $_POST['foccupation'];
-            $familyvalues     = $_POST['familyvalues'];
-            $familystatus     = $_POST['familystatus'];
-            $religion     = $_POST['religion'];
-            $mtongue     = $_POST['mtongue'];
-            $caste     = $_POST['caste'];
-            $countrybirth     = $_POST['countrybirth'];
-            $citybirth     = $_POST['citybirth'];
-            $manglik              = $_POST['manglik'];
-            $edulevel              = $_POST['edulevel'];
-            $edufield              = $_POST['edufield'];
-            $occupation              = $_POST['occupation'];
-            $income              = $_POST['income'];
-            $self           = $_POST['self'];
-            $partner        = $_POST['partner'];
-            //$timestamp = $_POST['timestamp'];
-
-            $maxIDSQL = "SELECT max(user_id) as user_id FROM profile";
-
-            $id=1;
-            $res = $conn->query($maxIDSQL);
-
-            if ($res->num_rows > 0) {
-                while ($result = $res->fetch_assoc()) {
-                    $id = $result["user_id"] + 1;
-                }
-            }
-
-            $_FILES['image']['name'] = "user-" . $id . ".jpg";
-            $imagePath = "user_images/" . basename($_FILES['image']['name']);
-
-            if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
-                $message = "Successful Upload";
-            }
-
-            $signup_id = $_GET["signup_id"] ?? false;
-
-            if (isset($signup_id)) {
-                $sql = "INSERT INTO `profile`(`user_id`, `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`, `images`, `signup_id`) 
-            VALUES ('$signup_id', '$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp(), '$imagePath', '$signup_id')";
-
-                $result = mysqli_query($conn, $sql);
-                $showAlert = true;
-
-                if ($showAlert) {
-                    session_start();
-
-                    $_SESSION["username"] = $signup_id;
-                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> You should check in on some of those fields below.
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>';
-                }
-            }
-
-            else {
-                echo "403 Forbidden";
-            }
-        }
-
-        ?>
+        
         <!-- Handled request post -->
-        <form action=" <?php $_SERVER['REQUEST_URI']; ?>" method="POST" enctype="multipart/form-data">
+        <form action=" ' .  $_SERVER['REQUEST_URI']  .
 
+        '" method="POST" enctype="multipart/form-data">
             <br>
             <div class="asterick">Fields are mark with * are compulsory</div>
 
@@ -220,10 +221,10 @@
 
                     reader.onload = function() {
                         var result = reader.result;
-                        var img = document.getElementById('img');
+                        var img = document.getElementById("img");
                         img.src = result;
                     }
-                    reader.readAsDataURL(input);
+                    reader.readAsDataURL(input)
                 }
             </script>
             <br>
@@ -366,11 +367,11 @@
                         <input type="number" name="sibling" required>
                     </section>
                     <section>
-                        <label>Mother's Occupation* : </label>
+                        <label>Mother\'s Occupation* : </label>
                         <input type="text" name="moccupation" required>
-                    </section>
+                    </section>' . '
                     <section>
-                        <label>Father's Occupation* : </label>
+                        <label>Father\'s Occupation* : </label>
                         <input type="text" name="foccupation" required>
                     </section>
                     <section style="margin-top:15px;">
@@ -425,7 +426,7 @@
                             <option> Select an option </option>
                             <option> Yes </option>
                             <option> No </option>
-                            <option> Don't Know </option>
+                            <option> Don\'t Know </option> ' . '
                         </select>
                     </section>
                 </div>
@@ -487,7 +488,14 @@
 
         </form>
     </section>
+          
+            ';
+}
 
+else {
+    echo "Your profile is already completed";
+}
+?>
     <?php
     require_once "submodules/footer_after_login.php"
     ?>

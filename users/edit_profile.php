@@ -27,7 +27,7 @@
                 <li><a href="#">&nbsp;</a></li>
                 <li>
                     <label for="btn-1" class="show">Features +</label>
-                    <a href="profile.php">My Profile</a>
+                    <a href="profile.php?signup_id=<?php  echo $_SESSION["username"];?>">My Profile</a>
                     <input type="checkbox" id="btn-1">
                     <ul>
                         <li><?php echo '<a href="my_profile.php?id=' . $_SESSION["username"] . '">View_profile</a>' ?></li>
@@ -191,18 +191,20 @@
 
                 $userExec = $conn->query($userSQL);
 
-                while($row = $userExec->fetch_assoc()) {
+                if ($userExec->fetch_assoc()['is_authorized'] !== 'F') {
 
-                    echo
-                        '<div class="general">
+                    while ($row = $userExec->fetch_assoc()) {
+
+                        echo
+                            '<div class="general">
                 <span>GENERAL INFORMATION</span>
             </div>'
-                        .
-                        # Image
-                        "<div style='display: flex;justify-content: center;align-items: center;'>" .
-                        "<img height='200' width='200' src= '" . $row['images'] . "'>" .
-                        "</div>" .
-                        '
+                            .
+                            # Image
+                            "<div style='display: flex;justify-content: center;align-items: center;'>" .
+                            "<img height='200' width='200' src= '" . $row['images'] . "'>" .
+                            "</div>" .
+                            '
             <br>
             <div class="info">
                 <div class="same-for-all">
@@ -412,14 +414,23 @@
                     <span class="text-muted pull-right" id="count3">2000</span><span> &nbsp;Characters left</span>
                 </div>
             </div>';
+
+                        echo '<div class="info">
+<a href="edit_profile.php"><button type="submit" class="submit" name="submit">Submit</button></a>
+                        
+</div>';
+                    }
+                }
+
+                else {
+                    echo "You are not yet authorized to perform this action";
                 }
             }
+
+            else {
+                echo "You are not yet authorized to perform this action";
+            }
             ?>
-            <div class="info">
-                <?php
-                echo '<a href="edit_profile.php"><button type="submit" class="submit" name="submit">Submit</button></a>';
-                ?>
-            </div>
 
 
         </form>
