@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -6,12 +7,12 @@
   box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
 }
-nav {
+nav#largeNav {
   background-image: url("../../images/navbar.png");
   height: 280px;
   width: 100%;
 }
-nav:after {
+nav#largeNav:after {
   content: "";
   clear: both;
   display: table;
@@ -22,33 +23,33 @@ nav:after {
   margin-top: 10px;
 }
 
-nav ul {
+nav#largeNav ul {
   float: right;
   margin-right: 40px;
   list-style: none;
   position: relative;
 }
-nav ul li {
+nav#largeNav ul li {
   float: left;
   display: inline-block;
   margin: 0 5px;
 }
-nav ul li a {
+nav#largeNav ul li a {
   color: white;
   line-height: 70px;
   text-decoration: none;
   font-size: 18px;
   padding: 8px 8px;
 }
-nav ul li a:hover {
+nav#largeNav ul li a:hover {
   color: white;
   border-radius: 5px;
   box-shadow: 0 0 5px #1dadf0, 0 0 10px #1cd2ff;
 }
-nav ul ul li a:hover {
+nav#largeNav ul ul li a:hover {
   box-shadow: none;
 }
-nav ul ul {
+nav#largeNav ul ul {
   position: absolute;
   top: 90px;
   /* border-top: 3px solid rgb(31, 194, 243); */
@@ -56,15 +57,15 @@ nav ul ul {
   visibility: hidden;
   transition: top 0.3s;
 }
-nav ul ul ul {
+nav#largeNav ul ul ul {
   border-top: none;
 }
-nav ul li:hover > ul {
+nav#largeNav ul li:hover > ul {
   top: 70px;
   opacity: 1;
   visibility: visible;
 }
-nav ul ul li {
+nav#largeNav ul ul li {
   position: relative;
   margin: 0px;
   width: 200px;
@@ -72,10 +73,10 @@ nav ul ul li {
   display: list-item;
   /* border-bottom: 1px solid rgba(0, 0, 0, 0.3); */
 }
-nav ul ul li a {
+nav#largeNav ul ul li a {
   line-height: 38px;
 }
-nav ul ul ul li {
+nav#largeNav ul ul ul li {
   position: relative;
   top: -60px;
   left: 150px;
@@ -89,81 +90,7 @@ input {
   font-size: 15px;
   margin-left: 40px;
 }
-@media all and (max-width: 700px) {
-  /* .brand-logo {
-    visibility: hidden;
-  } */
-  nav {
-    background-image: url("../../images/navbar.png");
-    height: 400px;
-    width: 100%;
-  }
-  nav ul {
-    margin-right: 0px;
-    float: left;
-  }
 
-  .show + a,
-  ul {
-    display: none;
-  }
-  nav ul li,
-  nav ul ul li {
-    display: block;
-    width: 100%;
-  }
-  nav ul li a:hover {
-    box-shadow: none;
-  }
-  .show {
-    display: block;
-    color: white;
-    font-size: 18px;
-    padding: 0 20px;
-    line-height: 70px;
-    cursor: pointer;
-  }
-  .show:hover {
-    color: rgb(5, 91, 117);
-  }
-  .icon {
-    display: block;
-    color: white;
-    position: absolute;
-    top: 0;
-    right: 40px;
-    line-height: 70px;
-    cursor: pointer;
-    font-size: 25px;
-  }
-  nav ul ul {
-    top: 70px;
-    border-top: 0px;
-    float: none;
-    position: static;
-    display: none;
-    opacity: 1;
-    visibility: visible;
-  }
-  nav ul ul a {
-    padding-left: 40px;
-  }
-  nav ul ul ul a {
-    padding-left: 80px;
-  }
-  nav ul ul ul li {
-    position: static;
-  }
-  [id^="btn"]:checked + ul {
-    display: block;
-  }
-  nav ul ul li {
-    border-bottom: 0px;
-  }
-  span.cancel:before {
-    content: "\f00d";
-  }
-}
 .brand-tagline {
   color: white;
   font-size: 30px;

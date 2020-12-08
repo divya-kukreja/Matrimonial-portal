@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="css/navSmall.css">
+    <script src="js/navbar.js" defer></script>
     <style>
         #img {
             display: flex;
@@ -30,7 +32,7 @@
 
 <body>
 <?php   session_start(); $_SESSION["username"] = $_GET["signup_id"]; ?>
-    <nav>
+    <nav id="largeNav">
         <div class="navbar-top">
             <a href=""><img src="../images/logo.png" alt="brand-logo" class="brand-logo"></a>
             <label for="btn" class="icon">
@@ -81,6 +83,61 @@
             <div class="tagline">
                 <span class="brand-tagline">You know you're in love when you can't fall asleep because reality is finally better than your dreams.</span>
             </div>
+    </nav>
+
+<!-- Small Nav -->
+    <nav id="smallNav">
+        <section class="displayContent">
+            <section id="image">
+                <img src="../images/logo.png" alt="brand-logo" style="height: 40px;width: 40px;">
+            </section>
+            <section id="toggler-btn">
+                <img src="../images/bars-solid.png" alt="toggle" style="height: 25px;width: 25px;" id="toggler-btn">
+            </section>
+        </section>
+        <section id="navContent">
+            <ul style="margin-top: 12px;">
+                <li class="profileData">
+                    <div>
+                        <a href="profile.php?signup_id=<?php echo $_SESSION["username"];?>" id="myProfile" style="font-size: 16px;">My Profile</a>
+                    </div>
+                    <div style="margin-left: 5px;" id="profileData">
+                        <img src="../images/sort-down-solid.png" style="height: 10px;width: 10px;" alt="">
+                    </div>
+                </li>
+                <li id="profileDataDrop" class="profileDataDrop">
+                    <ul>
+                        <li style="border: 1px solid white">
+                            <?php echo '<a href="my_profile.php?id=' . $_SESSION["username"] . '">View_profile</a>' ?>
+                        </li>
+                        <li style="border: 1px solid white">
+                            <?php echo '<a href="edit_profile.php?id=' . $_SESSION["username"] . '">Edit_profile</a>' ?>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link" href="partner_search.php?id=<?php echo $_SESSION["username"];?>" style="font-size: 16px;">Partner Search</a>
+                </li>
+                <li id="profileRequest" class="profileData">
+                    <div>
+                        <a href="#" id="myProfile" style="font-size: 16px;">Requests</a>
+                    </div>
+                    <div style="margin-left: 5px;">
+                        <img src="../images/sort-down-solid.png" style="height: 10px;width: 10px;" alt="">
+                    </div>
+                </li>
+                <li id="profileRequestData" class="profileDataDrop">
+                    <ul>
+                        <li style="border: 1px solid white"><?php echo '<a href="sent_requests.php?id=' . $_SESSION["username"] . '">Sent Requests</a>' ?></li>
+                        <li style="border: 1px solid white"><?php echo '<a href="received_requests.php?id=' . $_SESSION["username"] . '">Received Requests</a>' ?></li>
+                        <li style="border: 1px solid white"><?php echo '<a href="my_matches.php?id=' . $_SESSION["username"] . '">My Matches</a>' ?></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="nav-link" href="logout.php" id="logout">Logout</a>
+                </li>
+            </ul>
+        </section>
     </nav>
 
     <!-- jQuery CDN -->
