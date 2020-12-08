@@ -550,7 +550,15 @@ if ($checkIfProfileComplete->num_rows <= 0) {
 }
 
 else {
-    echo "Your profile is already completed";
+    echo "<br><br>.<div class='container-fluid'>
+    <div class='jumbotron'>
+      <p class='text-center' style='font-size:30px;font-weight:200;'>Your profile is already completed</p>
+      <br>
+      <p class='text-center' style='font-size:26px;font-weight:100;' >If you want to edit your profile you can go to edit profile menu in the section.
+      </p>
+
+    </div>
+  ";
 }
 ?>
     <?php

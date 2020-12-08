@@ -239,7 +239,21 @@
         }
             }
         }
+
+        else {
+            echo "<br><br>.<div class='container-fluid'>
+    <div class='jumbotron'>
+      <p class='text-center' style='font-size:30px;font-weight:200;'>Not found</p>
+      <br>
+      <p class='text-center' style='font-size:26px;font-weight:100;' >No users to show
+      </p>
+
+    </div>
+  ";
+        }
     }
+
+    require_once "submodules/footer_after_login.php";
     ?>
 </body>
 </html>

@@ -250,7 +250,15 @@
         }
 
         else {
-            echo "You are not yet authorized to perform this action";
+            echo "<br><br>.<div class='container-fluid'>
+    <div class='jumbotron'>
+      <p class='text-center' style='font-size:30px;font-weight:200;'>Unauthorized</p>
+      <br>
+      <p class='text-center' style='font-size:26px;font-weight:100;' >You are not yet authorized to perform this action.
+      </p>
+
+    </div>
+  ";
         }
     }
     ?>
