@@ -22,7 +22,7 @@
             <img src="../images/logo.png" alt="brand-logo" class="brand-logo">
             <ul>
                 <li>
-                    <a class="nav-link" href="index.php?auth_id=<?php echo $_SESSION["auth_id"];?>">Home</a>
+                    <a class="nav-link active" href="index.php?auth_id=<?php echo $_SESSION["auth_id"];?>">Home</a>
                 </li>
                 <li>
                     <a class="nav-link" href="approved_applications.php">Approved Applications</a>

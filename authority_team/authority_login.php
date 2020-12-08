@@ -2,10 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+   
     <link rel="stylesheet" href="css/login.css">
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-      <link rel="icon" type="image/ico" href="../images/favicon.ico">
-      <title>Authority Login</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
   </head>
   <?php
     require_once "mysql_connection.php";
