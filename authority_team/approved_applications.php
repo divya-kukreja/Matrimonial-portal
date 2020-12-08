@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,7 @@
             <img src="../images/logo.png" alt="brand-logo" class="brand-logo">
             <ul>
                 <li>
-                    <a class="nav-link" href="index.php">Home</a>
+                    <a class="nav-link" href="index.php?auth_id=<?php echo $_SESSION["auth_id"];?>">Home</a>
                 </li>
                 <li>
                     <a class="nav-link active" href="approved_applications.php">Approved Applications</a>
@@ -39,75 +40,77 @@
         <?php
             require_once "mysql_connection.php";
 
-            session_start();
             $authID = $_SESSION["auth_id"] ?? false;
             $approvedSQL = "SELECT user_id FROM is_authorized_user WHERE remarks='OK' AND auth_id='" . $authID . "'";
 
             if (isset($authID)) {
-                $approvedResult = $conn->query($approvedSQL);
+                $checkIfAuthority = $conn->query("SELECT * FROM authority WHERE auth_id='" . $_SESSION["auth_id"] . "'");
 
-                if (isset($approvedResult)) {
-                    if ($approvedResult->num_rows > 0) {
-                        while ($approvedResult1 = $approvedResult->fetch_assoc()) {
-                            $approvedUserSQL = "SELECT * FROM profile WHERE user_id='" . $approvedResult1["user_id"] . "'";
-                            $approvedUserConn = $conn->query($approvedUserSQL);
+                if ($checkIfAuthority->num_rows > 0) {
+                    $approvedResult = $conn->query($approvedSQL);
 
-                            if ($approvedUserConn->num_rows > 0) {
-                                while ($approvedUserDetails = $approvedUserConn->fetch_assoc()) {
-                                    echo "<div class='card'>";
-                                    # Image
-                                    echo "<div style='display: flex;justify-content: center;align-items: center;' class='img'>";
-                                    echo "<img height='200' width='200' src= '../users/" . $approvedUserDetails['images'] . "'>";
-                                    echo "</div>";
-                                    echo "<div class='info'>";
-                                    echo "<div>";
-                                    echo "<h4>MIH(" . $approvedUserDetails["user_id"] . ")</h4>";
-                                    echo "<small>" . $approvedUserDetails["name"] . "</small>";
-                                    echo "<hr>";
-                                    echo "</div>";
-                                    echo "<div class='subinfo'>";
-                                    echo "<div class='subinfo1'>";
-                                    echo "<div class='largeScreenText'>";
-                                    echo "<span>DOB: | </span>";
-                                    echo "<span>" . $approvedUserDetails["dob"] . "</span>";
-                                    echo "<span>Religion: | </span>";
-                                    echo "<span>" . $approvedUserDetails["religion"] . "</span>";
-                                    echo "<span>Martial Status: | </span>";
-                                    echo "<span>" . $approvedUserDetails["maritial"] . "</span>";
-                                    echo "<span>City: | </span>";
-                                    echo "<span>" . $approvedUserDetails["city"] . "</span>";
-                                    echo "</div>";
-                                    echo "<div class='smallSizeDisplay'>";
-                                    echo "<div>";
-                                    echo "<span>DOB: | </span>";
-                                    echo "<span>" . $approvedUserDetails["dob"] . "</span>";
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<span>Religion: | </span>";
-                                    echo "<span>" . $approvedUserDetails["religion"] . "</span>";
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<span>Martial Status: |</span>";
-                                    echo "<span>" . $approvedUserDetails["maritial"] . "</span>";
-                                    echo "</div>";
-                                    echo "<div>";
-                                    echo "<span>City: |</span>";
-                                    echo "<span>" . $approvedUserDetails["city"] . "</span>";
-                                    echo "</div>";
-                                    echo "</div>";
-                                    echo "</div>";
-                                    echo "</div>";
-                                    echo "</div>";
-                                    echo "</div>";
-                                    echo "</div>";
+                    if (isset($approvedResult)) {
+                        if ($approvedResult->num_rows > 0) {
+                            while ($approvedResult1 = $approvedResult->fetch_assoc()) {
+                                $approvedUserSQL = "SELECT * FROM profile WHERE user_id='" . $approvedResult1["user_id"] . "'";
+                                $approvedUserConn = $conn->query($approvedUserSQL);
+
+                                if ($approvedUserConn->num_rows > 0) {
+                                    while ($approvedUserDetails = $approvedUserConn->fetch_assoc()) {
+                                        echo "<div class='card'>";
+                                        # Image
+                                        echo "<div style='display: flex;justify-content: center;align-items: center;' class='img'>";
+                                        echo "<img height='200' width='200' src= '../users/" . $approvedUserDetails['images'] . "'>";
+                                        echo "</div>";
+                                        echo "<div class='info'>";
+                                        echo "<div>";
+                                        echo "<h4>MIH(" . $approvedUserDetails["user_id"] . ")</h4>";
+                                        echo "<small>" . $approvedUserDetails["name"] . "</small>";
+                                        echo "<hr>";
+                                        echo "</div>";
+                                        echo "<div class='subinfo'>";
+                                        echo "<div class='subinfo1'>";
+                                        echo "<div class='largeScreenText'>";
+                                        echo "<span>DOB: | </span>";
+                                        echo "<span>" . $approvedUserDetails["dob"] . "</span>";
+                                        echo "<span>Religion: | </span>";
+                                        echo "<span>" . $approvedUserDetails["religion"] . "</span>";
+                                        echo "<span>Martial Status: | </span>";
+                                        echo "<span>" . $approvedUserDetails["maritial"] . "</span>";
+                                        echo "<span>City: | </span>";
+                                        echo "<span>" . $approvedUserDetails["city"] . "</span>";
+                                        echo "</div>";
+                                        echo "<div class='smallSizeDisplay'>";
+                                        echo "<div>";
+                                        echo "<span>DOB: | </span>";
+                                        echo "<span>" . $approvedUserDetails["dob"] . "</span>";
+                                        echo "</div>";
+                                        echo "<div>";
+                                        echo "<span>Religion: | </span>";
+                                        echo "<span>" . $approvedUserDetails["religion"] . "</span>";
+                                        echo "</div>";
+                                        echo "<div>";
+                                        echo "<span>Martial Status: |</span>";
+                                        echo "<span>" . $approvedUserDetails["maritial"] . "</span>";
+                                        echo "</div>";
+                                        echo "<div>";
+                                        echo "<span>City: |</span>";
+                                        echo "<span>" . $approvedUserDetails["city"] . "</span>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                        echo "</div>";
+                                    }
                                 }
                             }
                         }
                     }
+                } else {
+                    echo "NA";
                 }
-            }
-            else {
-                echo "NA";
             }
 
         ?>

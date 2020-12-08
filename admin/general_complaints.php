@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +23,7 @@
             <img src="../images/logo.png" alt="brand-logo" class="brand-logo">
             <ul>
                 <li>
-                    <a class="nav-link" href="index.php">Home</a>
+                    <a class="nav-link" href="index.php?auth_id=<?php echo $_SESSION["admin_id"];?>">Home</a>
                 </li>
                 <li>
                     <a class="nav-link active" href="general_complaints.php">General Complaints</a>
@@ -66,6 +67,9 @@
 
                 if (isset($adminID) && $adminID !== false) {
                     $sql = "SELECT * FROM contact where is_user='F'";
+                $checkIfAdmin = $conn->query("SELECT * FROM admin WHERE admin_id='" . $adminID . "'");
+
+                if ($checkIfAdmin->num_rows > 0) {
 
                     $result = $conn->query($sql);
 
@@ -104,6 +108,7 @@
                     } else {
                         echo "<tr><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td><td>NA</td></tr>";
                     }
+                }
                 }
                 ?>
                 </tbody>
