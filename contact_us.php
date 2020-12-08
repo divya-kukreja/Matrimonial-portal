@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/contact_us.css">
     <link rel="icon" href="images/favicon.ico" type="image/ico">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
     <title>Contact Us</title>
 </head>
 
@@ -37,13 +38,23 @@
         $result = mysqli_query($conn, $sql);
         $showAlert = true;
 
-        if ($showAlert) {
-            echo '<div class="alert alert-success alert-dismissible fade show " role="alert">
+        if ($showAlert) {?>
+
+            <!-- echo '<div class="alert alert-success alert-dismissible fade show " role="alert">
                     <strong>ThankYou!</strong> We have recieved your query . we will surely connect back you soon.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
-                  </div>';
+                  </div>'; -->
+                  <script>
+                      swal({
+                            title: "Thankyou! We have recieved your query ",
+                            text: "we will surely connect back you soon",
+                            icon: "success",
+                        });
+                   </script>
+                   <?php
+
         }
     }
 
