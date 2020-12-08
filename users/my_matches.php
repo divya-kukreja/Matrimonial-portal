@@ -22,6 +22,7 @@
 
 <body>
     <nav>
+    <nav>
         <div class="navbar-top">
             <a href=""><img src="../images/logo.png" alt="brand-logo" class="brand-logo"></a>
             <label for="btn" class="icon">

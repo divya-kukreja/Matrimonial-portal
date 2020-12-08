@@ -8,7 +8,9 @@
     <!-- Local CSS File -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/about_us.css">
-    <link rel="icon" href="images/favicon.ico" type="image/ico">
+    <link rel="icon" href="images/favicon.ico" type="image/ico"><link rel="stylesheet" href="css/nav.css">
+    <!-- Javascript -->
+    <script src="js/navbar.js" defer></script>
     <title>About Us</title>
 </head>
 <body>

@@ -11,10 +11,13 @@ error_reporting(0);
     <!-- Local CSS File -->
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="images/favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="css/nav.css">
+    <!-- Javascript -->
+    <script src="js/navbar.js" defer></script>
     <title>Home page</title>
 </head>
 <body>
-    <nav>
+    <nav id="largeNav">
         <div class="navbar-top">
             <img src="images/logo.png" alt="brand-logo" class="brand-logo">
             <ul>
@@ -36,6 +39,33 @@ error_reporting(0);
             <span class="brand-tagline">You know you're in love when you can't fall asleep because reality is finally better than your dreams.</span>
         </div>
     </nav>
+    <nav id="smallNav">
+        <section class="displayContent">
+            <section id="image">
+                <img src="images/logo.png" alt="brand-logo" style="height: 40px;width: 40px;">
+            </section>
+            <section id="toggler-btn">
+                <img src="images/bars-solid.png" alt="toggle" style="height: 25px;width: 25px;" id="toggler-btn">
+            </section>
+        </section>
+        <section id="navContent">
+            <ul>
+                <li>
+                    <a class="nav-link active" href="index.php">Home</a>
+                </li>
+                <li>
+                    <a class="nav-link <?php echo stripos($url, "about") !== false ? 'active' : '';?>" href="about_us.php">About Us</a>
+                </li>
+                <li>
+                    <a class="nav-link <?php echo stripos($url, "contact") !== false ? 'active' : '';?>" href="contact_us.php">Contact Us</a>
+                </li>
+                <li>
+                    <a class="nav-link" href="#" id="loginBtn1">Login</a>
+                </li>
+            </ul>
+        </section>
+    </nav>
+
     <main>
         <div class="title">
             <span>Find your Special Someone</span>

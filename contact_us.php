@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="css/index.css">
     <link rel="stylesheet" href="css/contact_us.css">
     <link rel="icon" href="images/favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="css/nav.css">
+    <!-- Javascript -->
+    <script src="js/navbar.js" defer></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> 
     <title>Contact Us</title>
 </head>
