@@ -11,7 +11,7 @@
         <img src="images/logo.png" alt="brand-logo" class="brand-logo">
         <ul>
             <li>
-                <a class="nav-link active" href="index.php">Home</a>
+                <a class="nav-link" href="index.php">Home</a>
             </li>
             <li>
                 <a class="nav-link <?php echo stripos($url, "about") !== false ? 'active' : '';?>" href="about_us.php">About Us</a>

@@ -1,0 +1,47 @@
+#smallNav {
+    display: none;
+}
+
+#toggler-btn {
+    display: none;
+}
+
+.displayContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@media all and (max-width: 798px) {
+    #smallNav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        background-image: url("../../images/navbar.png");
+        height: 300px;
+    }
+
+    #largeNav {
+        display: none;
+    }
+
+    #toggler-btn {
+        display: block;
+    }
+
+    #navContent {
+        display: none;
+    }
+
+    #navContent ul {
+        list-style-type: none;
+    }
+
+    #navContent ul li {
+        text-align: center;
+    }
+}

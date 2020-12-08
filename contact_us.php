@@ -18,7 +18,7 @@
 
 <body>
     <?php
-
+    error_reporting(0);
     require "submodules/_dbconnect.php";
     ?>
 

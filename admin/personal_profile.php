@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="css/index.css">
     <link rel="icon" href="../images/favicon.ico" type="image/ico">
+    <link rel="stylesheet" href="css/nav.css">
+    <script src="js/navbar.js" defer></script>
     <!-- Sweetalert CDN -->
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-<nav>
+<nav id="largeNav">
     <div class="navbar-top">
         <img src="../images/logo.png" alt="brand-logo" class="brand-logo">
         <ul>
@@ -42,6 +44,38 @@
     <div class="tagline">
         <span class="brand-tagline">You know you're in love when you can't fall asleep because reality is finally better than your dreams.</span>
     </div>
+</nav>
+<nav id="smallNav">
+    <section class="displayContent">
+        <section id="image">
+            <img src="../images/logo.png" alt="brand-logo" style="height: 40px;width: 40px;">
+        </section>
+        <section id="toggler-btn">
+            <img src="../images/bars-solid.png" alt="toggle" style="height: 25px;width: 25px;" id="toggler-btn">
+        </section>
+    </section>
+    <section id="navContent">
+        <ul>
+            <li>
+                <a class="nav-link" href="index.php?auth_id=<?php echo $_SESSION["admin_id"];?>">Home</a>
+            </li>
+            <li>
+                <a class="nav-link" href="general_complaints.php">General Complaints</a>
+            </li>
+            <li>
+                <a class="nav-link" href="user_complaints.php">User Complaints</a>
+            </li>
+            <li>
+                <a class="nav-link" href="authority_team_details.php">Track Authority Team</a>
+            </li>
+            <li>
+                <a class="nav-link" id="authority_register_btn" href="#" style="color: #ffffff;">Register Authority</a>
+            </li>
+            <li>
+                <a class="nav-link" href="logout.php" id="loginBtn1">Logout</a>
+            </li>
+        </ul>
+    </section>
 </nav>
 <main>
     <?php
