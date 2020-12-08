@@ -138,14 +138,17 @@
 
                 $image = 'user_images/default_view.jpg';
                 $signupID = null;
+                $isAuthorized ='F';
+
                 while ($result = $res->fetch_assoc()) {
                     $image = $result['images'];
                     $signupID = $result['signup_id'];
+                    $isAuthorized = $result['is_authorized'];
                 }
                 $del = "Delete from `profile` where user_id='" . $userID1 . "'";
                 $delres = mysqli_query($conn, $del);
-                $sql = "INSERT INTO `profile`(`user_id`, `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`, `images`, `signup_id`) 
-            VALUES ('$userID1','$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp(), '$image', '$signupID' )";
+                $sql = "INSERT INTO `profile`(`user_id`, `name`, `country`, `dob`, `city`, `state`, `mobile`, `email`, `gender`, `citizen`, `height`, `maritial`, `children`, `smoke`, `drink`, `diet`, `blood`, `bodytype`, `member`, `sibling`, `moccupation`, `foccupation`, `familyvalues`, `familystatus`, `religion`, `mtongue`, `caste`, `countrybirth`, `citybirth`, `manglik`, `edulevel`, `edufield`, `occupation`, `income`, `self`, `partner`, `timestamp`, `images`, `signup_id`, `is_authorized`) 
+            VALUES ('$userID1','$name', '$country', '$dob', '$city', '$state', '$mobile', '$email', '$gender', '$citizen', '$height', '$maritial', '$children', '$smoke', '$drink', '$diet', '$blood', '$bodytype', '$member', '$sibling', '$moccupation', '$foccupation', '$familyvalues', '$familystatus', '$religion', '$mtongue', '$caste', '$countrybirth', '$citybirth', '$manglik', '$edulevel', '$edufield', '$occupation', '$income', '$self', '$partner',current_timestamp(), '$image', '$signupID', '$isAuthorized' )";
 
                 $result = mysqli_query($conn, $sql);
                 $showAlert = true;
@@ -190,11 +193,11 @@
                 $userSQL = "select * FROM profile WHERE user_id='" . $userID . "'";
 
                 $userExec = $conn->query($userSQL);
+                $row = $userExec->fetch_assoc();
 
-                if ($userExec->fetch_assoc()['is_authorized'] !== 'F') {
+                if ($userExec->num_rows > 0) {
 
-                    while ($row = $userExec->fetch_assoc()) {
-
+                    if ($row['is_authorized'] === 'T') {
                         echo
                             '<div class="general">
                 <span>GENERAL INFORMATION</span>
@@ -419,16 +422,11 @@
 <a href="edit_profile.php"><button type="submit" class="submit" name="submit">Submit</button></a>
                         
 </div>';
+
+                    } else {
+                        echo "You are not yet authorized to perform this action";
                     }
                 }
-
-                else {
-                    echo "You are not yet authorized to perform this action";
-                }
-            }
-
-            else {
-                echo "You are not yet authorized to perform this action";
             }
             ?>
 
