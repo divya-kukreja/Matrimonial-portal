@@ -54,6 +54,8 @@
     let signUpBtn = document.getElementById("signUpBtn");
     let spanLogin = document.getElementsByClassName("close")[0];
     let spanRegister = document.getElementById("registerClose");
+    let loginBtnSmall = document.getElementById("loginBtnSmall");
+    let registerIndex = document.getElementById("registerIndex");
 
     loginBtn1.onclick = function() {
         loginModal.style.display = "block";
@@ -95,9 +97,19 @@
         registerModal.style.display = "block";
     }
 
+    registerIndex.onclick = function() {
+        loginModal.style.display = "none";
+        registerModal.style.display = "block";
+    }
+
     signUpBtn.onclick = function() {
         loginModal.style.display = "none";
         registerModal.style.display = "block";
+    }
+
+    loginBtnSmall.onclick = function() {
+        loginModal.style.display = "block";
+        registerModal.style.display = "none";
     }
 
 </script>

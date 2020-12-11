@@ -22,7 +22,7 @@
         <img src="../images/logo.png" alt="brand-logo" class="brand-logo">
         <ul>
             <li>
-                <a class="nav-link" href="index.php?auth_id=<?php echo $_SESSION["admin_id"];?>">Home</a>
+                <a class="nav-link" href="index.php?admin_id=<?php echo $_SESSION["admin_id"];?>">Home</a>
             </li>
             <li>
                 <a class="nav-link" href="general_complaints.php">General Complaints</a>
@@ -57,7 +57,7 @@
     <section id="navContent">
         <ul>
             <li>
-                <a class="nav-link" href="index.php?auth_id=<?php echo $_SESSION["admin_id"];?>">Home</a>
+                <a class="nav-link" href="index.php?admin_id=<?php echo $_SESSION["admin_id"];?>">Home</a>
             </li>
             <li>
                 <a class="nav-link" href="general_complaints.php">General Complaints</a>
@@ -102,7 +102,7 @@
 
                     # Image
                     echo "<div style='display: flex;justify-content: center;align-items: center;'>";
-                    echo "<img height='200' width='200' src= '../users/" . $user['images'] . "'>";
+                    echo "<img height='200' width='200' src= '" . $user['images'] . "'>";
                     echo "</div>";
 
                     echo "<br>";

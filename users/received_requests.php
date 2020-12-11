@@ -135,7 +135,7 @@ require "submodules/_dbconnect.php";
 $userID = $_SESSION["username"] ?? false;
 
 if (isset($userID)) {
-    $expressedInterestID = "SELECT * FROM expressed_interest WHERE expressed_interest_id='" . $userID . "' AND status = 'F'";
+    $expressedInterestID = "SELECT * FROM expressed_interest WHERE expressed_interest_id='" . $userID . "' AND status = 'F' AND user_id != ' ' AND user_id != ''";
 
     $res = $conn->query($expressedInterestID);
 
@@ -146,7 +146,6 @@ if (isset($userID)) {
             $userExec = $conn->query($userSQL);
 
             while ($row = $userExec->fetch_assoc()) {
-
 
                 if ($row["user_id"] !== $_SESSION["username"]) {
                     echo

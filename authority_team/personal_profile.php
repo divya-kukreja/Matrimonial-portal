@@ -58,7 +58,7 @@
                             echo "<div class='general'><span>GENERAL INFORMATION</span></div>";
                             # Image
                             echo "<div style='display: flex;justify-content: center;align-items: center;' class='img'>";
-                            echo "<img height='200' width='200' src= '../users/" . $user['images'] . "'>";
+                            echo "<img height='200' width='200' src= '" . $user['images'] . "'>";
                             echo "</div>";
                             echo "<br>";
                             echo "<div class='container'>";

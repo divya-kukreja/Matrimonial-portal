@@ -137,12 +137,16 @@ require "submodules/_dbconnect.php";
 $userID = $_SESSION["username"] ?? false;
 
 if (isset($userID)) {
-    $expressedInterestID = "SELECT * FROM expressed_interest WHERE expressed_interest_id='" . $userID . "' OR user_id='" . $userID . "' AND status = 'T'";
+    $expressedInterestID = "SELECT * FROM expressed_interest WHERE expressed_interest_id='" . $userID . "' OR user_id='" . $userID . "'";
 
     $res = $conn->query($expressedInterestID);
 
     if ($res->num_rows > 0) {
         while($expressed = $res->fetch_assoc()) {
+
+            if ($expressed['status'] === 'T') {
+
+
             $userSQL = "SELECT * FROM profile WHERE user_id='" . $expressed["user_id"] . "'";
 
             $userExec = $conn->query($userSQL);
@@ -225,10 +229,97 @@ if (isset($userID)) {
     </main>';
                 }
             }
+
+                $userSQL = "SELECT * FROM profile WHERE user_id='" . $expressed["expressed_interest_id"] . "'";
+
+                $userExec = $conn->query($userSQL);
+
+                while ($row = $userExec->fetch_assoc()) {
+
+
+                    if ($row["user_id"] !== $_SESSION["username"]) {
+                        echo
+                            '<main>
+        <!-- Submodule -->
+        <div class="card">
+            <div class="img">
+                <img src="' . $row['images'] . '" alt="" width="150" height="200">
+            </div>
+            <div class="info">
+                <div>
+                    <h4>' . $row['user_id'] . '</h4>
+                    <hr>
+                </div>
+                <div class="subinfo">
+                    <div class="subinfo1">
+                        <div class="largeScreenText">
+                            <span>Name:&emsp;</span>
+                            <span>Religion:&emsp;</span>
+                            <span>Martial Status:&emsp;</span>
+                            <span>Mother Tongue:&emsp;</span>
+                            <span>Profession:&emsp;</span>
+                        </div>
+                        <div class="largeScreenText">
+                            <span>' . $row['name'] . '</span>
+                            <span>' . $row['religion'] . '</span>
+                            <span>' . $row['maritial'] . '</span>
+                            <span>' . $row['mtongue'] . '</span>
+                            <span>' . $row['occupation'] . '</span>
+                        </div>
+
+                        <div class="smallSizeDisplay">
+                            <div>
+                                <span>Name:&nbsp;</span>
+                                <span>' . $row['name'] . '</span>
+                            </div>
+                            <div>
+                                <span>Religion:&nbsp;</span>
+                                <span>' . $row['religion'] . '</span>
+                            </div>
+                            <div>
+                                <span>Martial Status:&nbsp;</span>
+                                <span>' . $row['maritial'] . '</span>
+                            </div>
+                            <div>
+                                <span>Mother Tongue:&nbsp;</span>
+                                <span>' . $row['mtongue'] . '</span>
+                            </div>
+                            <div>
+                                <span>Profession:&nbsp;</span>
+                                <span>' . $row['occupation'] . '</span>
+                            </div>
+                        </div>
+                      
+                    <!-- For Buttons -->
+                    <div class = "float-right">
+                    
+                    <div class="buttons flex">
+                        <a href="partner_search_profile.php?id=' . $row['user_id'] . '" class="button">
+                            <div>
+                                <img src="../images/user-tag-solid.png" alt="user">
+                            </div>
+                            <div>
+                                <span>View Profile</span>
+                            </div>
+                        </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Submodule -->
+      
+    </main>';
+                    }
+                }
+        }
+
         }
     }
 
-    echo "<br><br>.<div class='container-fluid'>
+    else {
+
+        echo "<br><br>.<div class='container-fluid'>
     <div class='jumbotron'>
       <p class='text-center' style='font-size:30px;font-weight:200;'>Not found</p>
       <br>
@@ -237,6 +328,7 @@ if (isset($userID)) {
 
     </div>
   ";
+    }
 }
 
 require_once "submodules/footer_after_login.php";

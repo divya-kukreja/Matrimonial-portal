@@ -157,8 +157,9 @@
             if ($num > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     if ($row["user_id"] !== $_SESSION["username"]) {
-                        echo
-                            '<main>
+                        if ($row['is_authorized'] === 'T') {
+                            echo
+                                '<main>
         <!-- Submodule -->
         <div class="card">
             <div class="img">
@@ -244,6 +245,7 @@
         <!-- End Submodule -->
       
     </main>';
+                        }
                     }
                 }
             }

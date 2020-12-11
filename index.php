@@ -60,7 +60,7 @@ error_reporting(0);
                     <a class="nav-link <?php echo stripos($url, "contact") !== false ? 'active' : '';?>" href="contact_us.php">Contact Us</a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#" id="loginBtn1">Login</a>
+                    <a class="nav-link" href="#" id="loginBtnSmall">Login</a>
                 </li>
             </ul>
         </section>
@@ -108,7 +108,7 @@ error_reporting(0);
         </div>
         <div class="title title2">
             <span>Now it is your turn to be happily married</span><br>
-            <button class="register">Register here</button>
+            <button class="register" id="registerIndex">Register here</button>
         </div>
         <div class="title title2">
             <span>Our Services</span>

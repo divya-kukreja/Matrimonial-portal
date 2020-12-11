@@ -20,7 +20,7 @@
                 <a class="nav-link <?php echo stripos($url, "contact") !== false ? 'active' : '';?>" href="contact_us.php">Contact Us</a>
             </li>
             <li>
-                <a class="nav-link" href="#" id="loginBtn1">Login</a>
+                <a class="nav-link" href="#" id="loginBtnSmall">Login</a>
             </li>
         </ul>
     </div>

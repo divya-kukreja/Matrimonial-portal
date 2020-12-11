@@ -60,7 +60,7 @@
                                         echo "<div class='card'>";
                                         # Image
                                         echo "<div style='display: flex;justify-content: center;align-items: center;' class='img'>";
-                                        echo "<img height='200' width='200' src= '../users/" . $approvedUserDetails['images'] . "'>";
+                                        echo "<img height='200' width='200' src= '" . $approvedUserDetails['images'] . "'>";
                                         echo "</div>";
                                         echo "<div class='info'>";
                                         echo "<div>";

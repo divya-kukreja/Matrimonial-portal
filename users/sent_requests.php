@@ -136,7 +136,7 @@
     $userID = $_SESSION["username"] ?? false;
 
     if (isset($userID)) {
-        $expressedInterestID = "SELECT * FROM expressed_interest WHERE user_id='" . $userID . "' AND (status='F' OR status='R')";
+        $expressedInterestID = "SELECT * FROM expressed_interest WHERE user_id='" . $userID . "' AND (status='F' OR status='R') AND expressed_interest_id != ' ' AND expressed_interest_id != ''";
 
         $res = $conn->query($expressedInterestID);
 

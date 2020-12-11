@@ -155,6 +155,9 @@
 
 <!-- Handling the form request -->
 <?php
+require_once "credentials.php";
+require_once "S3.php";
+
 $showAlert = false;
 $method = $_SERVER['REQUEST_METHOD'];
 //echo $method;       // method check krne ke liye get hai ki post
@@ -210,11 +213,21 @@ if ($method == "POST") {
     }
 
     $_FILES['image']['name'] = "user-" . $id . ".jpg";
-    $imagePath = "user_images/" . basename($_FILES['image']['name']);
+    $tmpfile = $_FILES['image']['tmp_name'];
+    $file = $_FILES['image']['name'];
 
-    if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
+    S3::setAuth(AWS_S3_KEY, AWS_S3_SECRET);
+    S3::setRegion(AWS_S3_REGION);
+    S3::setSignatureVersion('v4');
+    S3::putObject(S3::inputFile($tmpfile), AWS_S3_BUCKET, 'user_images/'.$file, S3::ACL_PUBLIC_READ);
+    unlink($tmpfile);
+
+    /*if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
         $message = "Successful Upload";
     }
+
+    */
+    $imagePath = AWS_S3_URL . 'user_images/' . "user-" . $id . ".jpg";
 
     $signup_id = $_GET["signup_id"] ?? false;
 
